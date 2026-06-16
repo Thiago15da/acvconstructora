@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ACV Constructora | Si puedes soñarlo, podemos construirlo</title>
+<meta name="description" content="ACV Constructora: ingeniería, arquitectura y construcción de alto impacto. Proyectos, obras y refacciones llave en mano." />
+
+<!-- Tailwind CSS (CDN, JIT) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: { 950: '#09090b', 900: '#0c0c0f', 800: '#15151a' },
+          ember: { DEFAULT: '#ea580c', deep: '#c2410c' }
+        },
+        fontFamily: {
+          display: ['"Bebas Neue"', 'Oswald', 'sans-serif'],
+          sans: ['"Inter"', 'system-ui', 'sans-serif']
+        },
+        keyframes: {
+          fadeUp: { '0%': { opacity: 0, transform: 'translateY(24px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+          glowPulse: { '0%,100%': { opacity: .35 }, '50%': { opacity: .7 } },
+          floaty: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } }
+        },
+        animation: {
+          fadeUp: 'fadeUp .8s ease forwards',
+          glowPulse: 'glowPulse 4s ease-in-out infinite',
+          floaty: 'floaty 3.5s ease-in-out infinite'
+        }
+      }
+    }
+  }
+</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background-color: #09090b; color: #e4e4e7; }
+  .font-display { font-family: 'Oswald', sans-serif; letter-spacing: 0.02em; }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #09090b; }
+  ::-webkit-scrollbar-thumb { background: #c2410c; border-radius: 4px; }
+
+  /* Blueprint grid background */
+  .blueprint-grid {
+    background-image:
+      linear-gradient(rgba(234,88,12,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(234,88,12,0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* Hero noise / texture overlay */
+  .hero-glow {
+    background: radial-gradient(circle at 80% 20%, rgba(234,88,12,0.25), transparent 45%),
+                radial-gradient(circle at 10% 80%, rgba(234,88,12,0.12), transparent 40%);
+  }
+
+  .text-stroke {
+    -webkit-text-stroke: 1px rgba(234,88,12,0.5);
+    color: transparent;
+  }
+
+  .clip-diagonal { clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%); }
+
+  /* Card hover sheen */
+  .sheen { position: relative; overflow: hidden; }
+  .sheen::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -150%;
+    width: 60%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(234,88,12,0.18), transparent);
+    transform: skewX(-20deg);
+    transition: left .7s ease;
+  }
+  .sheen:hover::before { left: 150%; }
+
+  .portfolio-tab.active {
+    background-color: #ea580c;
+    color: #09090b;
+    border-color: #ea580c;
+  }
+
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+  .timeline-line {
+    background: linear-gradient(to bottom, #ea580c, rgba(234,88,12,0.05));
+  }
+
+  input::placeholder, textarea::placeholder { color: #71717a; }
+</style>
+</head>
+
+<body class="antialiased overflow-x-hidden">
+
+<!-- ============ NAVBAR ============ -->
+<header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500">
+  <nav class="flex items-center justify-between px-6 md:px-12 py-5 transition-all duration-500" id="navInner">
+    <!-- Logo conceptual -->
+    <a href="#hero" class="flex items-center gap-3 group">
+      <svg width="40" height="40" viewBox="0 0 48 48" class="shrink-0">
+        <polyline points="4,40 4,18 24,6 44,18 44,40" fill="none" stroke="#ea580c" stroke-width="2.5" stroke-linejoin="round" class="group-hover:stroke-white transition-colors duration-500"/>
+        <line x1="24" y1="6" x2="24" y2="40" stroke="#e4e4e7" stroke-width="2"/>
+        <line x1="4" y1="40" x2="44" y2="40" stroke="#e4e4e7" stroke-width="2"/>
+      </svg>
+      <div class="leading-tight">
+        <p class="font-display text-xl md:text-2xl tracking-widest text-white">ACV</p>
+        <p class="text-[10px] md:text-xs uppercase tracking-[0.3em] text-ember -mt-1">Constructora</p>
+      </div>
+    </a>
+
+    <!-- Lema (desktop only) -->
+    <p class="hidden lg:block text-xs uppercase tracking-[0.25em] text-zinc-400 italic">
+      "Si puedes soñarlo, <span class="text-ember">podemos construirlo</span>"
+    </p>
+
+    <!-- Desktop menu -->
+    <ul class="hidden md:flex items-center gap-8 text-sm uppercase tracking-wider text-zinc-300">
+      <li><a href="#servicios" class="hover:text-ember transition-colors duration-300">Servicios</a></li>
+      <li><a href="#portafolio" class="hover:text-ember transition-colors duration-300">Portafolio</a></li>
+      <li><a href="#metodologia" class="hover:text-ember transition-colors duration-300">Metodología</a></li>
+      <li><a href="#contacto" class="px-5 py-2 border border-ember text-ember hover:bg-ember hover:text-ink-950 rounded-sm transition-all duration-300">Contacto</a></li>
+    </ul>
+
+    <!-- Mobile toggle -->
+    <button id="menuBtn" class="md:hidden flex flex-col gap-1.5 w-8 h-8 justify-center items-center" aria-label="Abrir menú">
+      <span class="block w-7 h-[2px] bg-white transition-all duration-300" id="bar1"></span>
+      <span class="block w-7 h-[2px] bg-white transition-all duration-300" id="bar2"></span>
+      <span class="block w-7 h-[2px] bg-white transition-all duration-300" id="bar3"></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="md:hidden hidden flex-col bg-ink-900/98 border-t border-zinc-800 px-6 py-6 gap-5 text-zinc-300 uppercase tracking-wider text-sm">
+    <a href="#servicios" class="block py-2 hover:text-ember">Servicios</a>
+    <a href="#portafolio" class="block py-2 hover:text-ember">Portafolio</a>
+    <a href="#metodologia" class="block py-2 hover:text-ember">Metodología</a>
+    <a href="#contacto" class="block py-2 text-ember">Contacto</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="hero" class="relative min-h-screen flex items-center justify-center blueprint-grid hero-glow overflow-hidden">
+  <!-- decorative architectural lines -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/4 left-0 w-full h-px bg-zinc-800"></div>
+    <div class="absolute top-1/2 left-0 w-full h-px bg-zinc-800/60"></div>
+    <div class="absolute -bottom-32 -right-32 w-[500px] h-[500px] rounded-full bg-ember/10 blur-3xl animate-glowPulse"></div>
+    <div class="absolute top-20 -left-20 w-[300px] h-[300px] rounded-full bg-ember/5 blur-3xl animate-glowPulse"></div>
+  </div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6 text-center pt-24">
+    <p class="text-ember uppercase tracking-[0.4em] text-xs md:text-sm mb-6 reveal">Ingeniería &mdash; Arquitectura &mdash; Construcción</p>
+
+    <h1 class="font-display leading-[0.9] mb-6 reveal">
+      <span class="block text-5xl sm:text-7xl md:text-9xl text-white">CONSTRUIMOS</span>
+      <span class="block text-5xl sm:text-7xl md:text-9xl text-stroke">TU VISIÓN</span>
+    </h1>
+
+    <p class="max-w-2xl mx-auto text-zinc-400 text-base md:text-lg mb-10 reveal">
+      Si puedes soñarlo, <span class="text-ember font-medium">podemos construirlo</span>. Transformamos ideas en estructuras sólidas, con precisión técnica y un estándar de excelencia que define cada proyecto que entregamos.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center reveal">
+      <a href="#contacto" class="px-8 py-4 bg-ember hover:bg-ember-deep text-ink-950 font-semibold uppercase tracking-wider text-sm rounded-sm transition-all duration-300 shadow-lg shadow-ember/30 hover:shadow-ember/50 hover:-translate-y-1">
+        Cotizar mi Obra
+      </a>
+      <a href="#portafolio" class="px-8 py-4 border border-zinc-700 hover:border-ember text-zinc-200 hover:text-ember font-semibold uppercase tracking-wider text-sm rounded-sm transition-all duration-300">
+        Ver Portafolio
+      </a>
+    </div>
+  </div>
+
+  <!-- scroll cue -->
+  <a href="#servicios" class="absolute bottom-10 left-1/2 -translate-x-1/2 text-zinc-500 hover:text-ember transition-colors animate-floaty">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4v16m0 0l-6-6m6 6l6-6"/></svg>
+  </a>
+</section>
+
+<!-- Floating CTA (mobile sticky) -->
+<a href="#contacto" id="floatingCta" class="fixed bottom-6 right-6 z-40 px-6 py-3 bg-ember text-ink-950 font-semibold uppercase text-xs tracking-wider rounded-full shadow-2xl shadow-ember/40 hover:bg-ember-deep transition-all duration-300 opacity-0 translate-y-4 pointer-events-none">
+  Cotizar mi Obra
+</a>
+
+<!-- ============ SERVICIOS ============ -->
+<section id="servicios" class="relative py-28 px-6 md:px-12 bg-ink-900 border-t border-zinc-800/60">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-16 reveal">
+      <p class="text-ember uppercase tracking-[0.3em] text-xs mb-3">Lo que hacemos</p>
+      <h2 class="font-display text-4xl md:text-6xl text-white">Servicios Especializados</h2>
+    </div>
+
+    <div id="servicesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </div>
+</section>
+
+<!-- ============ PORTAFOLIO ============ -->
+<section id="portafolio" class="relative py-28 px-6 md:px-12 bg-ink-950 border-t border-zinc-800/60">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-12 reveal">
+      <p class="text-ember uppercase tracking-[0.3em] text-xs mb-3">Nuestro trabajo</p>
+      <h2 class="font-display text-4xl md:text-6xl text-white mb-8">Portafolio</h2>
+
+      <!-- Tabs -->
+      <div class="flex flex-wrap gap-3" id="portfolioTabs">
+        <button data-filter="todos" class="portfolio-tab active px-6 py-2.5 border border-zinc-700 rounded-full text-sm uppercase tracking-wider transition-all duration-300">Todos</button>
+        <button data-filter="proyectos" class="portfolio-tab px-6 py-2.5 border border-zinc-700 rounded-full text-sm uppercase tracking-wider transition-all duration-300 text-zinc-300">Proyectos</button>
+        <button data-filter="obras" class="portfolio-tab px-6 py-2.5 border border-zinc-700 rounded-full text-sm uppercase tracking-wider transition-all duration-300 text-zinc-300">Obras</button>
+        <button data-filter="refacciones" class="portfolio-tab px-6 py-2.5 border border-zinc-700 rounded-full text-sm uppercase tracking-wider transition-all duration-300 text-zinc-300">Refacciones</button>
+      </div>
+    </div>
+
+    <div id="portfolioGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </div>
+</section>
+
+<!-- ============ METODOLOGÍA ============ -->
+<section id="metodologia" class="relative py-28 px-6 md:px-12 bg-ink-900 border-t border-zinc-800/60 overflow-hidden">
+  <div class="max-w-5xl mx-auto">
+    <div class="mb-20 reveal text-center">
+      <p class="text-ember uppercase tracking-[0.3em] text-xs mb-3">Cómo trabajamos</p>
+      <h2 class="font-display text-4xl md:text-6xl text-white">Metodología de Trabajo</h2>
+    </div>
+
+    <div class="relative" id="timeline">
+      <div class="absolute left-[27px] md:left-1/2 top-0 bottom-0 w-px timeline-line md:-translate-x-1/2"></div>
+      <!-- phases injected by JS -->
+      <div id="timelineItems" class="space-y-16"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO / FOOTER ============ -->
+<section id="contacto" class="relative py-28 px-6 md:px-12 bg-ink-950 border-t border-zinc-800/60 blueprint-grid">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-16 reveal">
+      <p class="text-ember uppercase tracking-[0.3em] text-xs mb-3">Hablemos</p>
+      <h2 class="font-display text-4xl md:text-6xl text-white">Cotiza tu Próxima Obra</h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Form -->
+      <form id="contactForm" class="bg-ink-900/70 border border-zinc-800 rounded-lg p-8 space-y-5 reveal" onsubmit="return false;">
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-zinc-400 mb-2">Nombre completo</label>
+          <input type="text" required class="w-full bg-ink-950 border border-zinc-700 focus:border-ember outline-none rounded-sm px-4 py-3 text-sm transition-colors" placeholder="Tu nombre" />
+        </div>
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-zinc-400 mb-2">Teléfono</label>
+          <input type="tel" required class="w-full bg-ink-950 border border-zinc-700 focus:border-ember outline-none rounded-sm px-4 py-3 text-sm transition-colors" placeholder="+591 ..." />
+        </div>
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-zinc-400 mb-2">Cuéntanos tu proyecto</label>
+          <textarea rows="4" required class="w-full bg-ink-950 border border-zinc-700 focus:border-ember outline-none rounded-sm px-4 py-3 text-sm transition-colors resize-none" placeholder="Describe tu obra, refacción o proyecto..."></textarea>
+        </div>
+        <button type="submit" id="formSubmit" class="w-full py-4 bg-ember hover:bg-ember-deep text-ink-950 font-semibold uppercase tracking-wider text-sm rounded-sm transition-all duration-300">
+          Enviar Solicitud
+        </button>
+        <p id="formSuccess" class="hidden text-ember text-sm text-center pt-2">¡Gracias! Tu solicitud fue registrada. Te contactaremos pronto.</p>
+      </form>
+
+      <!-- Map + WhatsApp -->
+      <div class="space-y-6 reveal">
+        <div class="relative rounded-lg overflow-hidden border border-zinc-800 h-64 blueprint-grid flex items-center justify-center bg-ink-900/50">
+          <div class="absolute inset-0 hero-glow"></div>
+          <div class="relative z-10 text-center px-6">
+            <svg class="mx-auto mb-3" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="1.5"><path d="M12 22s8-7.58 8-13a8 8 0 1 0-16 0c0 5.42 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            <p class="text-zinc-300 text-sm">Atendemos proyectos a nivel nacional.<br/>Coordina una visita técnica con nuestro equipo.</p>
+          </div>
+        </div>
+
+        <a href="https://wa.me/595992448444?text=Hola%20ACV%20Constructora%2C%20quiero%20cotizar%20mi%20obra" target="_blank" rel="noopener noreferrer"
+           class="flex items-center justify-center gap-3 w-full py-4 bg-green-600 hover:bg-green-500 text-white font-semibold uppercase tracking-wider text-sm rounded-sm transition-all duration-300">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-1.4-.6-2.4-1.4-3.2-2.7-.1-.2-.1-.4.1-.6.2-.2.5-.5.6-.7.1-.2.1-.4 0-.6-.1-.2-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 3 4.7 4.1 2.3.9 2.8.7 3.3.6.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 20.2 12 8.2 8.2 0 0 1 12 20.2z"/></svg>
+          Chatea con nosotros 24/7
+        </a>
+
+        <div class="grid grid-cols-2 gap-4 text-sm">
+          <div class="bg-ink-900/60 border border-zinc-800 rounded-sm p-4">
+            <p class="text-zinc-500 uppercase text-xs tracking-wider mb-1">Email</p>
+            <p class="text-zinc-200">contacto@acvconstructora.com</p>
+          </div>
+          <div class="bg-ink-900/60 border border-zinc-800 rounded-sm p-4">
+            <p class="text-zinc-500 uppercase text-xs tracking-wider mb-1">Horario</p>
+            <p class="text-zinc-200">Lun &ndash; Sáb, 8:00 &ndash; 18:00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="max-w-7xl mx-auto mt-24 pt-10 border-t border-zinc-800/60 flex flex-col md:flex-row items-center justify-between gap-4 text-zinc-500 text-xs">
+    <div class="flex items-center gap-2">
+      <svg width="22" height="22" viewBox="0 0 48 48"><polyline points="4,40 4,18 24,6 44,18 44,40" fill="none" stroke="#ea580c" stroke-width="3" stroke-linejoin="round"/></svg>
+      <span class="uppercase tracking-widest">ACV Constructora &copy; <span id="year"></span></span>
+    </div>
+    <p class="italic">"Si puedes soñarlo, podemos construirlo"</p>
+  </footer>
+</section>
+
+<script>
+  // ===== Year =====
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ===== Navbar scroll state =====
+  const navInner = document.getElementById('navInner');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) {
+      navInner.classList.add('bg-ink-950/90', 'backdrop-blur-md', 'border-b', 'border-zinc-800/60', 'py-3');
+    } else {
+      navInner.classList.remove('bg-ink-950/90', 'backdrop-blur-md', 'border-b', 'border-zinc-800/60', 'py-3');
+    }
+  });
+
+  // ===== Mobile menu toggle =====
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const bar1 = document.getElementById('bar1'), bar2 = document.getElementById('bar2'), bar3 = document.getElementById('bar3');
+  let menuOpen = false;
+  menuBtn.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+    bar1.style.transform = menuOpen ? 'rotate(45deg) translateY(7px)' : '';
+    bar2.style.opacity = menuOpen ? '0' : '1';
+    bar3.style.transform = menuOpen ? 'rotate(-45deg) translateY(-7px)' : '';
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menuOpen = false;
+    mobileMenu.classList.add('hidden');
+    mobileMenu.classList.remove('flex');
+    bar1.style.transform = ''; bar2.style.opacity = '1'; bar3.style.transform = '';
+  }));
+
+  // ===== Floating CTA visibility (hide once hero is out of view, show afterwards) =====
+  const floatingCta = document.getElementById('floatingCta');
+  const heroSection = document.getElementById('hero');
+  const ctaObserver = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) {
+      floatingCta.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+    } else {
+      floatingCta.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+    }
+  }, { threshold: 0.1 });
+  ctaObserver.observe(heroSection);
+
+  // ===== Reveal on scroll =====
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('in-view');
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // ===== Services Data =====
+  const services = [
+    { title: 'Construcción en General', icon: '🏗️', desc: 'Ejecución integral de obra civil con altos estándares de calidad estructural y acabado.' },
+    { title: 'Equipamiento de Piscinas', icon: '🌊', desc: 'Diseño, construcción y equipamiento técnico de piscinas residenciales y comerciales.' },
+    { title: 'Fiscalización de Obras', icon: '📐', desc: 'Supervisión técnica rigurosa para garantizar cumplimiento de plazos, calidad y normativa.' },
+    { title: 'Planos y Permisos Municipales', icon: '📋', desc: 'Elaboración de planos técnicos y gestión completa de permisos ante entidades municipales.' },
+    { title: 'Remodelaciones y Ampliaciones', icon: '🔨', desc: 'Transformamos espacios existentes con intervenciones funcionales y estéticas.' },
+    { title: 'Gerenciamiento de Obras', icon: '🧭', desc: 'Dirección integral del proyecto: recursos, tiempos y equipos bajo un mismo control.' },
+    { title: 'Cómputo y Presupuesto', icon: '🧮', desc: 'Estimaciones precisas de materiales, mano de obra y costos para una planificación certera.' },
+    { title: 'Diseños de Proyectos', icon: '✏️', desc: 'Desarrollo arquitectónico conceptual y técnico adaptado a la visión del cliente.' },
+    { title: 'Diseño de Muebles', icon: '🪵', desc: 'Mobiliario a medida que complementa la identidad arquitectónica de cada espacio.' },
+  ];
+
+  const servicesGrid = document.getElementById('servicesGrid');
+  services.forEach((s, i) => {
+    const card = document.createElement('div');
+    card.className = 'sheen reveal group relative bg-ink-950 border border-zinc-800 hover:border-ember/60 rounded-lg p-8 transition-all duration-500 hover:-translate-y-1';
+    card.style.transitionDelay = `${(i % 3) * 80}ms`;
+    card.innerHTML = `
+      <div class="text-4xl mb-5">${s.icon}</div>
+      <h3 class="font-display text-xl text-white mb-3 group-hover:text-ember transition-colors duration-300">${s.title}</h3>
+      <p class="text-zinc-400 text-sm leading-relaxed">${s.desc}</p>
+      <div class="absolute bottom-0 left-0 h-[2px] w-0 bg-ember group-hover:w-full transition-all duration-500"></div>
+    `;
+    servicesGrid.appendChild(card);
+    revealObserver.observe(card);
+  });
+
+  // ===== Portfolio Data =====
+  const projects = [
+    { name: 'Residencia Cumbre Norte', category: 'proyectos', tag: 'Diseño Arquitectónico', img: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=800&auto=format&fit=crop' },
+    { name: 'Edificio Plaza Central', category: 'obras', tag: 'Construcción en Ejecución', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop' },
+    { name: 'Casa del Valle', category: 'refacciones', tag: 'Ampliación y Remodelación', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop' },
+    { name: 'Complejo Acuático Mirador', category: 'proyectos', tag: 'Diseño + Piscina', img: 'https://images.unsplash.com/photo-1561501900-3701fa6a0864?q=80&w=800&auto=format&fit=crop' },
+    { name: 'Torre Empresarial Sur', category: 'obras', tag: 'Gerenciamiento de Obra', img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop' },
+    { name: 'Loft Industrial Este', category: 'refacciones', tag: 'Refacción Integral', img: 'https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=800&auto=format&fit=crop' },
+  ];
+
+  const portfolioGrid = document.getElementById('portfolioGrid');
+  function renderPortfolio(filter = 'todos') {
+    portfolioGrid.innerHTML = '';
+    projects
+      .filter(p => filter === 'todos' || p.category === filter)
+      .forEach((p, i) => {
+        const item = document.createElement('div');
+        item.className = 'reveal in-view group relative rounded-lg overflow-hidden border border-zinc-800 hover:border-ember/60 transition-all duration-500 h-72';
+        item.innerHTML = `
+          <img src="${p.img}" alt="${p.name}" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/40 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6">
+            <p class="text-ember text-xs uppercase tracking-widest mb-1">${p.tag}</p>
+            <h3 class="font-display text-xl text-white">${p.name}</h3>
+          </div>
+        `;
+        portfolioGrid.appendChild(item);
+      });
+  }
+  renderPortfolio();
+
+  document.querySelectorAll('.portfolio-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.portfolio-tab').forEach(t => {
+        t.classList.remove('active');
+        t.classList.add('text-zinc-300');
+      });
+      tab.classList.add('active');
+      tab.classList.remove('text-zinc-300');
+      renderPortfolio(tab.dataset.filter);
+    });
+  });
+
+  // ===== Methodology Timeline =====
+  const phases = [
+    { num: '01', title: 'Planificación y Diseño', desc: 'Relevamiento, conceptualización arquitectónica y desarrollo de planos técnicos preliminares.' },
+    { num: '02', title: 'Cómputo y Presupuesto', desc: 'Estimación detallada de materiales, mano de obra y costos para una propuesta transparente.' },
+    { num: '03', title: 'Gestión de Permisos', desc: 'Tramitación de permisos municipales y aprobaciones normativas necesarias para iniciar obra.' },
+    { num: '04', title: 'Ejecución y Fiscalización', desc: 'Construcción activa con supervisión técnica permanente para garantizar calidad y plazos.' },
+    { num: '05', title: 'Entrega Llave en Mano', desc: 'Finalización integral del proyecto, listo para habitar o utilizar sin pendientes.' },
+  ];
+
+  const timelineItems = document.getElementById('timelineItems');
+  phases.forEach((p, i) => {
+    const isLeft = i % 2 === 0;
+    const row = document.createElement('div');
+    row.className = 'reveal relative flex flex-col md:flex-row items-start md:items-center gap-6';
+    row.innerHTML = `
+      <div class="flex md:contents">
+        <div class="relative z-10 flex-shrink-0 w-14 h-14 rounded-full bg-ember text-ink-950 font-display flex items-center justify-center text-lg shadow-lg shadow-ember/30 ${isLeft ? 'md:order-2' : 'md:order-1'}">${p.num}</div>
+        <div class="md:w-[calc(50%-3.5rem)] ${isLeft ? 'md:order-1 md:text-right' : 'md:order-3'} pl-4">
+          ${isLeft ? `<h3 class="font-display text-2xl text-white mb-2">${p.title}</h3><p class="text-zinc-400 text-sm leading-relaxed">${p.desc}</p>` : ''}
+        </div>
+        <div class="hidden md:block md:w-[calc(50%-3.5rem)] ${isLeft ? 'md:order-3' : 'md:order-1'}">
+          ${!isLeft ? `<h3 class="font-display text-2xl text-white mb-2">${p.title}</h3><p class="text-zinc-400 text-sm leading-relaxed">${p.desc}</p>` : ''}
+        </div>
+      </div>
+      <div class="md:hidden pl-4 -mt-2">
+        ${isLeft ? '' : `<h3 class="font-display text-2xl text-white mb-2">${p.title}</h3><p class="text-zinc-400 text-sm leading-relaxed">${p.desc}</p>`}
+      </div>
+    `;
+    timelineItems.appendChild(row);
+    revealObserver.observe(row);
+  });
+
+  // ===== Contact form (front-end only feedback) =====
+  const contactForm = document.getElementById('contactForm');
+  const formSubmit = document.getElementById('formSubmit');
+  const formSuccess = document.getElementById('formSuccess');
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    formSubmit.textContent = 'Enviado ✓';
+    formSubmit.disabled = true;
+    formSubmit.classList.add('opacity-60', 'cursor-not-allowed');
+    formSuccess.classList.remove('hidden');
+  });
+</script>
+</body>
+</html>
