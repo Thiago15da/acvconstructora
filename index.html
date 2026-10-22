@@ -1,266 +1,65 @@
-<!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Del Sol Constructora S.A. | Obras Civiles y Señalización</title>
-    
-    <!-- Tailwind CSS (CDN para despliegue rápido) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Configuración de colores corporativos -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: '#eab308', // Amarillo constructora (puedes ajustarlo)
-                        dark: '#111827',
-                    }
-                }
-            }
-        }
-    </script>
-
-    <!-- Google Fonts-->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome (Iconos) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        
-        /* Efecto Hero Background */
-        .hero-bg {
-            background-image: linear-gradient(rgba(17, 24, 39, 0.7), rgba(17, 24, 39, 0.9)), url('https://images.unsplash.com/photo-1541888081622-4a004f25b29c?q=80&w=2000&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        /* Transición de Navbar */
-        .nav-scrolled {
-            background-color: rgba(17, 24, 39, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Animación de las tarjetas de obras */
-        .project-card {
-            overflow: hidden;
-            position: relative;
-        }
-        .project-card img {
-            transition: transform 0.5s ease;
-        }
-        .project-card:hover img {
-            transform: scale(1.1);
-        }
-        .project-overlay {
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .project-card:hover .project-overlay {
-            opacity: 1;
-        }
-    </style>
-</head>
-<body class="bg-gray-50 text-gray-800 antialiased">
-
-    <!-- Navbar -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
-                <i class="fa-solid fa-helmet-safety text-brand"></i>
-                DEL SOL <span class="text-brand text-sm align-top mt-1">S.A.</span>
-            </a>
-            <div class="hidden md:flex space-x-8 text-white font-medium">
-                <a href="#inicio" class="hover:text-brand transition">Inicio</a>
-                <a href="#nosotros" class="hover:text-brand transition">Nosotros</a>
-                <a href="#servicios" class="hover:text-brand transition">Servicios</a>
-                <a href="#obras" class="hover:text-brand transition">Proyectos</a>
-            </div>
-            <a href="#contacto" class="hidden md:block bg-brand text-dark px-6 py-2 rounded-full font-bold hover:bg-yellow-400 transition shadow-lg">
-                Contactar
-            </a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header id="inicio" class="hero-bg h-screen flex items-center">
-        <div class="container mx-auto px-6 text-center md:text-left mt-16">
-            <span class="text-brand font-bold tracking-wider uppercase mb-4 block">Desde 1994</span>
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">
-                Construyendo el futuro <br> de <span class="text-brand">Paraguay</span>
-            </h1>
-            <p class="text-xl text-gray-300 mb-10 max-w-2xl">
-                Solidez, excelencia y compromiso en señalización vial y obras civiles de gran envergadura.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 md:justify-start justify-center">
-                <a href="#obras" class="bg-brand text-dark px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-400 transition shadow-lg text-center">
-                    Ver Obras y Proyectos
-                </a>
-                <a href="#contacto" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-dark transition text-center">
-                    Hablemos de su proyecto
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Servicios Rápidos -->
-    <section id="servicios" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-dark mb-4">Nuestras Especialidades</h2>
-                <div class="w-24 h-1 bg-brand mx-auto"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Servicio 1 -->
-                <div class="p-8 bg-gray-50 rounded-2xl border border-gray-100 hover:shadow-xl transition group">
-                    <div class="w-16 h-16 bg-brand/10 text-brand rounded-full flex items-center justify-center text-2xl mb-6 group-hover:bg-brand group-hover:text-dark transition">
-                        <i class="fa-solid fa-road"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">Señalización Vial</h3>
-                    <p class="text-gray-600">Sistemas de demarcación, señalética y seguridad para rutas y proyectos viales de todo el país.</p>
-                </div>
-                <!-- Servicio 2 -->
-                <div class="p-8 bg-gray-50 rounded-2xl border border-gray-100 hover:shadow-xl transition group">
-                    <div class="w-16 h-16 bg-brand/10 text-brand rounded-full flex items-center justify-center text-2xl mb-6 group-hover:bg-brand group-hover:text-dark transition">
-                        <i class="fa-solid fa-city"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">Obras Civiles</h3>
-                    <p class="text-gray-600">Ejecución de proyectos corporativos, industriales e infraestructura con los más altos estándares de calidad.</p>
-                </div>
-                <!-- Servicio 3 -->
-                <div class="p-8 bg-gray-50 rounded-2xl border border-gray-100 hover:shadow-xl transition group">
-                    <div class="w-16 h-16 bg-brand/10 text-brand rounded-full flex items-center justify-center text-2xl mb-6 group-hover:bg-brand group-hover:text-dark transition">
-                        <i class="fa-solid fa-drafting-compass"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">Desarrollo de Proyectos</h3>
-                    <p class="text-gray-600">Acompañamiento desde la planificación técnica hasta la entrega llave en mano de su inversión.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Obras / Portafolio -->
-    <section id="obras" class="py-20 bg-dark text-white">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
-                <div>
-                    <h2 class="text-4xl font-bold mb-4">Proyectos Destacados</h2>
-                    <div class="w-24 h-1 bg-brand"></div>
-                </div>
-                <p class="text-gray-400 max-w-md mt-4 md:mt-0">Explora una selección de nuestras obras recientes. Calidad garantizada en cada metro cuadrado.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Obra 1 -->
-                <div class="project-card rounded-xl bg-gray-800 h-80 cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356f12?q=80&w=800&auto=format&fit=crop" alt="Obra Civil" class="w-full h-full object-cover">
-                    <div class="project-overlay absolute inset-0 flex flex-col justify-end p-6">
-                        <span class="text-brand font-bold text-sm mb-1">Obra Corporativa</span>
-                        <h4 class="text-2xl font-bold">Edificio Comercial</h4>
-                        <p class="text-gray-300 text-sm mt-2"><i class="fa-solid fa-location-dot mr-2"></i>Asunción, Paraguay</p>
-                    </div>
-                </div>
-                <!-- Obra 2 -->
-                <div class="project-card rounded-xl bg-gray-800 h-80 cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1517480546995-1f9175440c95?q=80&w=800&auto=format&fit=crop" alt="Señalización" class="w-full h-full object-cover">
-                    <div class="project-overlay absolute inset-0 flex flex-col justify-end p-6">
-                        <span class="text-brand font-bold text-sm mb-1">Señalización Vial</span>
-                        <h4 class="text-2xl font-bold">Demarcación Ruta Nacional</h4>
-                        <p class="text-gray-300 text-sm mt-2"><i class="fa-solid fa-location-dot mr-2"></i>Gran Asunción</p>
-                    </div>
-                </div>
-                <!-- Obra 3 -->
-                <div class="project-card rounded-xl bg-gray-800 h-80 cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=800&auto=format&fit=crop" alt="Infraestructura" class="w-full h-full object-cover">
-                    <div class="project-overlay absolute inset-0 flex flex-col justify-end p-6">
-                        <span class="text-brand font-bold text-sm mb-1">Infraestructura</span>
-                        <h4 class="text-2xl font-bold">Nave Industrial</h4>
-                        <p class="text-gray-300 text-sm mt-2"><i class="fa-solid fa-location-dot mr-2"></i>Mariano Roque Alonso</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <button class="bg-transparent border border-gray-600 text-white px-8 py-3 rounded-full hover:bg-gray-800 hover:border-brand hover:text-brand transition">
-                    Cargar más obras
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer / Contacto -->
-    <footer id="contacto" class="bg-gray-900 pt-20 pb-10 text-white">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
-                <div>
-                    <h2 class="text-3xl font-bold mb-6">Iniciemos su próximo proyecto.</h2>
-                    <p class="text-gray-400 mb-8 max-w-md">Deje sus datos y nuestro equipo técnico se pondrá en contacto para evaluar su proyecto o licitación.</p>
-                    
-                    <div class="flex items-center gap-4 mb-4 text-gray-300">
-                        <i class="fa-solid fa-envelope text-brand text-xl"></i>
-                        <span>rubenpitta@constructoradelsol.com.py (Demo)</span>
-                    </div>
-                    <div class="flex items-center gap-4 text-gray-300">
-                        <i class="fa-solid fa-location-dot text-brand text-xl"></i>
-                        <span>Paraguay</span>
-                    </div>
-                </div>
-                
-                <div class="bg-gray-800 p-8 rounded-2xl">
-                    <form onsubmit="event.preventDefault(); alert('Modo Demostración: Formulario conectado a base de datos en la versión final.');">
-                        <div class="mb-4">
-                            <label class="block text-sm text-gray-400 mb-2">Nombre Completo</label>
-                            <input type="text" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand" placeholder="Ej. Juan Pérez">
-                        </div>
-                        <div class="mb-6">
-                            <label class="block text-sm text-gray-400 mb-2">Mensaje o Consulta</label>
-                            <textarea rows="3" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand" placeholder="Detalles del proyecto..."></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-brand text-dark font-bold py-4 rounded-lg hover:bg-yellow-400 transition">
-                            Enviar Mensaje
-                        </button>
-                    </form>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-                <p>&copy; 2026 Del Sol Constructora S.A. Todos los derechos reservados.</p>
-                <div class="flex items-center gap-2">
-                    <span>Prototipo desarrollado por</span>
-                    <a href="https://novatec.com.py/" target="_blank" class="text-gray-300 font-semibold hover:text-white transition flex items-center gap-1">
-                        NovaTec Engineering
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Botón flotante de WhatsApp -->
-    <a href="#" class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-2xl hover:scale-110 transition-transform z-50">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
-    <!-- Scripts para interactividad -->
-    <script>
-        // Efecto del Navbar al hacer scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('nav-scrolled');
-                nav.classList.remove('py-4');
-                nav.classList.add('py-2');
-            } else {
-                nav.classList.remove('nav-scrolled');
-                nav.classList.remove('py-2');
-                nav.classList.add('py-4');
-            }
-        });
-    </script>
-</body>
-</html>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f8f7f4"><meta name="robots" content="noindex,nofollow,noarchive"><meta name="description" content="Demostración visual de sitio web realizada por NovaTec Engineering para OHANA. No es un sitio oficial de la empresa."><title>OHANA | Propuesta visual · NovaTec Engineering</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://images.unsplash.com"><style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{--bg:#f8f7f4;--ink:#171a22;--muted:#777b85;--accent:#f47f6a;--accent2:#f6c44c;--card:#fff;--line:rgba(25,29,33,.12);--font:'Manrope',sans-serif;--display:'Fraunces',serif;--radius:22px;--max:1240px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}body.nav-open{overflow:hidden}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}img{max-width:100%;display:block}::selection{background:var(--accent);color:#fff}:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:fixed;left:1rem;top:-6rem;background:var(--ink);color:var(--bg);z-index:999;padding:1rem}.skip:focus{top:1rem}
+#site{overflow:hidden}.wrap{width:min(var(--max),calc(100% - 76px));margin-inline:auto}
+.notice{background:#111722;color:#ecf0f5;text-align:center;font-size:11px;font-weight:700;letter-spacing:.045em;padding:9px 16px;line-height:1.5}.notice strong{color:#ffca77}
+header{height:84px;position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+nav{height:100%;display:flex;justify-content:space-between;align-items:center;gap:22px}.logo{font-size:24px;font-weight:900;line-height:1;letter-spacing:-.085em;max-width:260px;white-space:nowrap}.logo span{color:var(--accent)}.navlinks{display:flex;gap:30px;align-items:center}.navlinks>a:not(.btn){font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;transition:opacity .2s}.navlinks>a:hover{opacity:.55}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;padding:16px 23px;border-radius:100px;background:var(--ink);color:var(--bg);font-size:13px;font-weight:800;letter-spacing:-.015em;min-height:50px;transition:transform .23s,background .23s,box-shadow .23s}.btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px #0002}.btn.accent{background:var(--accent);color:var(--btnink,#151515)}.btn.outline{background:transparent;border:1px solid currentColor;color:inherit}.btn.white{background:#fff;color:#161616}.btn.block{width:100%}.btn svg,.arrow{width:18px;height:18px}.mobile-toggle{display:none;border:0;background:none;color:inherit;padding:8px;font-size:26px}
+section{scroll-margin-top:90px}.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:800;letter-spacing:.17em;text-transform:uppercase}.eyebrow:before{content:'';height:8px;width:8px;background:var(--accent);border-radius:50%}.lead{font-size:clamp(17px,1.5vw,20px);line-height:1.75;color:var(--muted);max-width:635px}.muted{color:var(--muted)}.serif{font-family:var(--display)}
+h1,h2,h3,p{margin-top:0}h1{font-family:var(--display);font-weight:650;letter-spacing:-.055em;line-height:.99;font-size:clamp(56px,7.6vw,120px);margin-bottom:26px}h2{font-family:var(--display);font-weight:650;letter-spacing:-.052em;line-height:1.06;font-size:clamp(43px,5vw,76px);margin-bottom:18px}h3{font-size:23px;line-height:1.2;letter-spacing:-.035em}p{line-height:1.7}.section{padding:116px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:32px;margin-bottom:52px}.section-head>div:first-child{max-width:760px}
+.hero{min-height:760px;position:relative;display:flex;align-items:center}.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;align-items:center;gap:30px;padding-top:75px;padding-bottom:80px}.hero h1 em{font-style:normal;color:var(--accent)}.hero .lead{max-width:530px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}.hero-photo{height:580px;position:relative;overflow:hidden;border-radius:var(--radius);background:#dad5c9;box-shadow:0 28px 80px #0002}.hero-photo img{height:100%;width:100%;object-fit:cover}.hero-stamp{position:absolute;bottom:24px;left:24px;right:24px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fffffff0;border-radius:14px;font-weight:700;font-size:13px;color:#191919;backdrop-filter:blur(7px)}.hero-stamp small{color:#777;font-size:11px}
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;overflow:hidden}.marquee-track{white-space:nowrap;display:flex;gap:65px;align-items:center;width:max-content;animation:marq 30s linear infinite}.marquee span{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.marquee b{color:var(--accent);font-size:22px}@keyframes marq{to{transform:translateX(-50%)}}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:21px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.feature{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:31px;transition:transform .25s}.feature:hover{transform:translateY(-6px)}.feature .num{color:var(--accent);font-weight:800;font-size:13px;margin-bottom:54px}.feature h3{margin:0 0 14px}.feature p{margin-bottom:0;font-size:14px;color:var(--muted)}.feature-icon{font-size:32px;margin-bottom:26px}
+.gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.gallery figure{margin:0;position:relative;overflow:hidden;border-radius:var(--radius);background:#ddd;grid-column:span 4;min-height:370px}.gallery figure.wide{grid-column:span 6;min-height:440px}.gallery img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;transition:transform .6s}.gallery figure:hover img{transform:scale(1.06)}.gallery figcaption{position:absolute;bottom:0;inset-inline:0;padding:45px 24px 22px;color:#fff;font-weight:750;background:linear-gradient(transparent,#000a)}.gallery figcaption small{display:block;font-size:11px;color:#fff9;font-weight:600;margin-top:4px}
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}.filter{border:1px solid var(--line);background:transparent;color:var(--ink);padding:12px 19px;border-radius:80px;font-size:12px;font-weight:800;transition:.2s}.filter[aria-pressed=true],.filter:hover{background:var(--ink);color:var(--bg)}.filterable[hidden]{display:none!important}
+.quote{background:var(--card);border:1px solid var(--line);border-radius:calc(var(--radius) + 9px);padding:48px;box-shadow:0 24px 70px #0000000c}.quote h3{font-family:var(--display);font-size:clamp(32px,3.5vw,54px);margin:0 0 12px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.field{display:flex;flex-direction:column;gap:8px}.field.wide{grid-column:1/-1}.field label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.085em}.field input,.field select,.field textarea{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:12px;padding:15px 16px;outline:none;min-height:53px}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 20%,transparent)}textarea{min-height:110px!important;resize:vertical}.smallnote{font-size:12px;line-height:1.65;color:var(--muted)}.quote-bottom{display:flex;justify-content:space-between;align-items:center;gap:25px;margin-top:22px}.quote-bottom p{margin:0;max-width:350px}
+.bento{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:stretch}.bento-photo{min-height:530px;position:relative;border-radius:var(--radius);overflow:hidden}.bento-photo img{position:absolute;width:100%;height:100%;object-fit:cover}.bento-copy{background:var(--ink);color:var(--bg);padding:65px 48px;border-radius:var(--radius);display:flex;flex-direction:column;justify-content:space-between}.bento-copy h2{font-size:clamp(42px,4.5vw,67px)}.bento-copy p{color:color-mix(in srgb,var(--bg) 72%,transparent)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}.pill{border:1px solid currentColor;border-radius:100px;padding:9px 15px;font-size:12px;font-weight:750}.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:100px;align-items:center}.split-image{height:540px;border-radius:var(--radius);overflow:hidden}.split-image img{height:100%;width:100%;object-fit:cover}.checklist{padding:0;list-style:none;display:grid;gap:18px}.checklist li{display:flex;gap:14px;align-items:flex-start;line-height:1.5}.checklist li:before{content:'✓';color:var(--accent);font-weight:900}.closing{background:var(--ink);color:var(--bg);padding:100px 0;position:relative;overflow:hidden}.closing h2{font-size:clamp(48px,7.5vw,112px);max-width:980px}.closing .lead{color:color-mix(in srgb,var(--bg) 65%,transparent)}
+footer{background:#111722;color:#ffffffa8;padding:42px 0}.footer-grid{display:flex;justify-content:space-between;align-items:flex-start;gap:35px;flex-wrap:wrap}.footer-grid strong{color:white}.footer-links{display:flex;gap:25px;flex-wrap:wrap;font-size:12px}.footer-fine{border-top:1px solid #ffffff24;margin-top:35px;padding-top:20px;font-size:11px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;line-height:1.5}
+.float-wa{position:fixed;right:25px;bottom:25px;background:#23c46b;color:#092016;border:2px solid white;border-radius:100px;z-index:29;box-shadow:0 10px 30px #0003;padding:14px 17px;font-size:13px;font-weight:850;display:flex;align-items:center;gap:8px;transition:transform .2s}.float-wa:hover{transform:translateY(-4px)}.toast{position:fixed;left:50%;bottom:25px;transform:translateX(-50%) translateY(150px);padding:14px 24px;background:#151515;color:white;font-size:13px;font-weight:700;z-index:99;border-radius:12px;transition:transform .25s}.toast.show{transform:translateX(-50%) translateY(0)}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .65s,transform .65s}.reveal.visible{opacity:1;transform:none}
+[data-theme=party]{--bg:#fffaf0;--ink:#332349;--muted:#786e83;--accent:#ed65a9;--accent2:#f8bf54;--card:#fff;--display:'Fraunces',serif;--radius:29px;--btnink:#fff}
+[data-theme=car]{--bg:#0c1115;--ink:#f5f6f2;--muted:#a4adb1;--accent:#d5ef68;--accent2:#98abbc;--card:#171e23;--line:#ffffff1a;--display:'Space Grotesk',sans-serif;--radius:14px;--btnink:#142012}
+[data-theme=merch]{--bg:#f8f6f0;--ink:#1a2450;--muted:#647086;--accent:#ff634e;--accent2:#f1cf30;--card:#fff;--display:'Space Grotesk',sans-serif;--radius:22px;--btnink:#fff}
+[data-theme=reception]{--bg:#fbf7f3;--ink:#3d2636;--muted:#877985;--accent:#a86a8d;--accent2:#d8b88a;--card:#fff;--display:'Playfair Display',serif;--radius:9px;--btnink:#fff}
+[data-theme=boho]{--bg:#f3eee5;--ink:#3f392e;--muted:#867b6e;--accent:#b45f44;--accent2:#8d9867;--card:#fffdf6;--display:'Fraunces',serif;--radius:4px;--btnink:#fff}
+[data-theme=furniture]{--bg:#f5f3ed;--ink:#292c26;--muted:#7d8078;--accent:#9c6f47;--accent2:#8b9584;--card:#fff;--display:'Manrope',sans-serif;--radius:3px;--btnink:#fff}
+[data-theme=car] header{background:#0c1115ee}[data-theme=car] .hero-photo{box-shadow:none}[data-theme=car] .hero-stamp{background:#101619de;color:#eff2e5;border:1px solid #ffffff28}[data-theme=car] .hero-stamp small{color:#aab2b3}[data-theme=car] .filter[aria-pressed=true]{background:var(--accent);color:#121a1b}[data-theme=car] .quote{box-shadow:none}
+[data-theme=party] .hero{background:radial-gradient(circle at 85% 15%,#f7ddeb 0,transparent 40%),radial-gradient(circle at 10% 80%,#fff1cc,transparent 47%)}[data-theme=party] .hero-photo{border-radius:180px 180px 45px 45px;transform:rotate(1deg)}[data-theme=party] .hero-stamp{transform:rotate(-1deg)}[data-theme=party] .marquee{background:#ffe7a1}
+[data-theme=merch] .hero{background:linear-gradient(135deg,#f6f3e8 55%,#f9e8da)}[data-theme=merch] .hero h1{text-transform:uppercase;font-size:clamp(60px,8.6vw,130px);letter-spacing:-.09em}[data-theme=merch] .hero-photo{border-radius:38% 38% 12% 12%}[data-theme=merch] .marquee{background:var(--accent2)}
+[data-theme=reception] .hero-photo{border-radius:220px 220px 9px 9px}[data-theme=reception] .hero h1{font-weight:400}[data-theme=reception] .hero h1 em{font-style:italic}[data-theme=reception] .eyebrow:before{border-radius:0}
+[data-theme=boho] .hero-photo{border-radius:240px 240px 0 0}[data-theme=boho] .hero h1 em{font-style:italic}[data-theme=boho] .feature{box-shadow:9px 9px 0 #d7cbb7}[data-theme=boho] .marquee{background:#d9dac6}
+[data-theme=furniture] .hero h1{text-transform:uppercase;font-weight:800;letter-spacing:-.075em}[data-theme=furniture] .hero-photo{border-radius:2px}[data-theme=furniture] .feature{border-radius:3px}[data-theme=furniture] .btn{border-radius:3px}[data-theme=furniture] .marquee{background:#e9e7de}
+@media(max-width:1000px){.wrap{width:min(var(--max),calc(100% - 42px))}.navlinks{gap:15px}.navlinks>a:not(.btn){font-size:11px}.logo{font-size:21px}.hero-grid{grid-template-columns:1fr 1fr}.hero-photo{height:490px}.split{gap:45px}.bento-copy{padding:42px 30px}}
+@media(max-width:740px){header{height:68px}.wrap{width:calc(100% - 34px)}.mobile-toggle{display:block}.navlinks{display:none;position:absolute;top:68px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);padding:25px 20px 35px;flex-direction:column;align-items:stretch;gap:22px}.navlinks.open{display:flex}.navlinks>a:not(.btn){font-size:14px}.hero{min-height:auto}.hero-grid{grid-template-columns:1fr;gap:35px;padding-top:60px;padding-bottom:44px}.hero-photo{height:400px}.hero h1{font-size:clamp(50px,14vw,90px)}.hero .lead{font-size:16px}.section{padding:75px 0}.section-head{display:block;margin-bottom:30px}.grid3,.grid2{grid-template-columns:1fr}.feature .num{margin-bottom:25px}.gallery{grid-template-columns:1fr 1fr;gap:10px}.gallery figure,.gallery figure.wide{grid-column:auto;min-height:230px}.bento,.split{grid-template-columns:1fr;gap:20px}.bento-photo,.split-image{height:340px;min-height:340px}.bento-copy{padding:34px}.quote{padding:28px 20px}.form-grid{grid-template-columns:1fr}.quote-bottom{display:block}.quote-bottom .btn{width:100%;margin-top:18px}.closing{padding:70px 0}.float-wa{right:16px;bottom:16px}.hero-stamp{left:12px;right:12px;bottom:12px;font-size:11px;padding:12px}.hero-stamp small{font-size:10px}.gallery figcaption{font-size:11px;padding:35px 12px 14px}}
+@media(max-width:400px){.gallery{grid-template-columns:1fr}.gallery figure,.gallery figure.wide{min-height:280px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+</style></head><body>
+<a class="skip" href="#contenido">Ir al contenido</a>
+<div class="notice"><strong>DEMO NOVATEC</strong> · Propuesta visual independiente, no oficial ni encargada por OHANA. Fotos ilustrativas; información a validar.</div>
+<div id="site" data-theme="boho">
+<header><nav class="wrap" aria-label="Navegación principal"><a class="logo" href="#inicio" aria-label="Inicio de OHANA">ohana<span> ✳</span></a><button class="mobile-toggle" type="button" id="menuToggle" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">☰</button><div class="navlinks" id="menu"><a href="#universo" >Universo</a><a href="#coleccion" >Colección</a><a href="#proceso" >Proceso</a><a href="#cotizar" class="btn accent">Conversar ↗</a></div></nav></header>
+<main id="contenido">
+<section class="hero" id="inicio"><div class="wrap hero-grid"><div class="hero-copy reveal"><span class="eyebrow">Diseño de mobiliario · Asunción</span><h1 style="margin-top:25px">Espacios con <em>alma.</em></h1><p class="lead">Diseño, texturas y piezas que no se parecen a ninguna otra. Mobiliario a medida y retapizados para hogares con personalidad.</p><div class="hero-actions"><a href="#cotizar" class="btn accent">Contar mi idea <span aria-hidden="true">↗</span></a><a class="btn outline" href="#coleccion">Explorar la propuesta ↓</a></div><p class="smallnote" style="margin-top:24px">Concepto de sitio web · No constituye una oferta comercial oficial de OHANA.</p></div><div class="hero-photo reveal"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=85" alt="Fotografía ilustrativa de Diseño de mobiliario · Asunción" fetchpriority="high" onerror="this.style.opacity='.17';this.style.filter='grayscale(1)'"><div class="hero-stamp"><span>Diseñamos · Fabricamos · Renovamos</span><small>Recoleta · Asunción</small></div></div></div></section>
+<div class="marquee" aria-hidden="true"><div class="marquee-track"><b>✳</b><span>DISEÑO</span><b>✳</b><span>TEXTURAS</span><b>✳</b><span>COLOR</span><b>✳</b><span>HECHO A MEDIDA</span><b>✳</b><span>DISEÑO</span><b>✳</b><span>TEXTURAS</span><b>✳</b><span>COLOR</span><b>✳</b><span>HECHO A MEDIDA</span><b>✳</b><span>DISEÑO</span><b>✳</b><span>TEXTURAS</span><b>✳</b><span>COLOR</span><b>✳</b><span>HECHO A MEDIDA</span><b>✳</b><span>DISEÑO</span><b>✳</b><span>TEXTURAS</span><b>✳</b><span>COLOR</span><b>✳</b><span>HECHO A MEDIDA</span></div></div>
+<section class="section" id="universo"><div class="wrap"><div class="section-head reveal"><div><span class="eyebrow">Lo que nos mueve</span><h2>Piezas para sentirte en casa.</h2><p class="lead">No se trata solo de llenar espacios, sino de darles personalidad.</p></div><a href="#cotizar" class="btn outline">Contanos tu proyecto ↗</a></div><div class="grid3"><article class="feature reveal"><div class="num">01 / 03</div><div class="feature-icon" aria-hidden="true">❋</div><h3>Diseño propio</h3><p>Piezas con carácter, combinaciones inesperadas y materiales que cuentan historias.</p></article><article class="feature reveal"><div class="num">02 / 03</div><div class="feature-icon" aria-hidden="true">✽</div><h3>Hecho a medida</h3><p>Cada mueble nace a partir de la vida, los gustos y el espacio de quien lo elige.</p></article><article class="feature reveal"><div class="num">03 / 03</div><div class="feature-icon" aria-hidden="true">✦</div><h3>Nueva vida</h3><p>Retapizados y restauraciones para resignificar piezas que ya amás.</p></article></div></div></section>
+<section class="section" id="coleccion"><div class="wrap"><div class="section-head"><div><span class="eyebrow">Materiales y sensaciones</span><h2>Habitar también es <em style="color:var(--accent)">sentir.</em></h2><p class="lead">Texturas, colores y objetos con intención. Una mirada libre al mobiliario y la decoración.</p></div><p class="smallnote">Imágenes conceptuales, no fotografías de piezas reales de Ohana.</p></div><div class="gallery"><figure class="filterable wide" data-category="todos"><img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1300&q=85" alt="Fotografía ilustrativa: El arte de combinar" loading="lazy" onerror="this.style.opacity='.17';this.style.filter='grayscale(1)'"><figcaption>El arte de combinar<small>Imagen ilustrativa · Propuesta de diseño</small></figcaption></figure><figure class="filterable wide" data-category="todos"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1300&q=85" alt="Fotografía ilustrativa: Rincones con carácter" loading="lazy" onerror="this.style.opacity='.17';this.style.filter='grayscale(1)'"><figcaption>Rincones con carácter<small>Imagen ilustrativa · Propuesta de diseño</small></figcaption></figure><figure class="filterable wide" data-category="todos"><img src="https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&w=1300&q=85" alt="Fotografía ilustrativa: Luz, textura y calma" loading="lazy" onerror="this.style.opacity='.17';this.style.filter='grayscale(1)'"><figcaption>Luz, textura y calma<small>Imagen ilustrativa · Propuesta de diseño</small></figcaption></figure></div></div></section><section class="section" id="proceso"><div class="wrap"><div class="split"><div class="split-image"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1300&q=85" alt="Ambiente bohemio ilustrativo" loading="lazy" onerror="this.style.opacity='.17';this.style.filter='grayscale(1)'"></div><div><span class="eyebrow">Tu espacio, tu historia</span><h2>No hay dos hogares iguales.</h2><p class="lead">Elegí una pieza, compartí una inspiración o contanos qué querés recuperar. El diseño a medida empieza con una conversación.</p><div class="pills"><span class="pill">Bohemian chic</span><span class="pill">Tapicería</span><span class="pill">Texturas</span><span class="pill">Restauración</span></div><a class="btn accent" href="#cotizar" style="margin-top:34px">Imaginar juntos ↗</a></div></div></div></section>
+<section class="section" id="contacto"><div class="wrap"><div class="split" style="gap:48px"><div><span class="eyebrow">Hablemos</span><h2>Lo mejor empieza con una <em style="color:var(--accent)">conversación.</em></h2><p class="lead">Completá los datos para preparar tu consulta. Vas a poder revisarla en WhatsApp antes de enviarla.</p><div class="pills"><span class="pill">Atención personalizada</span><span class="pill">Consulta sin compromiso</span></div><a href="https://wa.me/595992437835?text=Hola%2C%20quisiera%20consultar%20sobre%20OHANA." target="_blank" rel="noopener noreferrer" class="btn outline" style="margin-top:28px">WhatsApp directo ↗</a></div><div class="quote reveal" id="cotizar"><span class="eyebrow">Tu proyecto comienza acá</span><h3>Imaginemos tu espacio.</h3><p class="lead" style="font-size:15px;margin-bottom:27px">Una idea, una foto o una medida son suficientes para comenzar la conversación.</p><form id="leadForm"><div class="form-grid"><div class="field "><label for="project">undefined *</label><select id="project" name="Qué te gustaría hacer" required><option value="">Seleccioná una opción</option><option>Sofá o sillón a medida</option><option>Retapizar un mueble</option><option>Pieza decorativa</option><option>Mobiliario completo</option><option>Asesoramiento</option></select></div><div class="field "><label for="style">undefined *</label><select id="style" name="Estilo de preferencia" required><option value="">Seleccioná una opción</option><option>Bohemio y colorido</option><option>Natural y neutro</option><option>Ecléctico</option><option>Todavía no sé</option></select></div><div class="field "><label for="name">undefined *</label><input type="text" id="name" name="Tu nombre" required   placeholder=""></div><div class="field "><label for="space">undefined</label><input type="text" id="space" name="Espacio o medidas"    placeholder="Ej. Living de 3 × 4 m"></div><div class="field wide"><label for="notes">undefined</label><textarea id="notes" name="Contanos tu idea" placeholder="Texturas, colores, fotos para enviar luego…"></textarea></div></div><div class="quote-bottom"><p class="smallnote">Al continuar, se abrirá WhatsApp con tu consulta prearmada. No se guardan datos en este sitio de demostración.</p><button type="submit" class="btn accent">Conversar sobre mi idea ↗</button></div></form></div></div></div></section>
+<section class="closing"><div class="wrap reveal"><span class="eyebrow">¿Empezamos?</span><h2>Que tu próxima idea <span style="color:var(--accent)">tome forma.</span></h2><p class="lead">Estamos a un mensaje de conversar sobre lo que imaginás.</p><a class="btn accent" href="#cotizar" style="margin-top:24px">Empezar ahora ↗</a></div></section>
+</main><footer><div class="wrap"><div class="footer-grid"><div><a class="logo" href="#inicio" style="color:white">ohana</a><p style="font-size:13px;margin-top:14px">Diseño de mobiliario · Asunción</p></div><div class="footer-links"><a href="#inicio">Inicio</a><a href="#coleccion">Explorar</a><a href="#cotizar">Contacto</a></div></div><div class="footer-fine"><span>© 2026 · Concepto visual. No es la página oficial de OHANA.</span><span>Propuesta diseñada por <strong>NovaTec Engineering</strong> · Imágenes ilustrativas de Unsplash.</span></div></div></footer>
+<a class="float-wa" target="_blank" rel="noopener noreferrer" href="https://wa.me/595992437835?text=Hola%2C%20quisiera%20recibir%20m%C3%A1s%20informaci%C3%B3n." aria-label="Abrir WhatsApp">✆ <span>WhatsApp</span></a><div class="toast" role="status" id="toast">Consulta preparada.</div>
+</div><script>
+(()=>{
+const menu=document.querySelector('#menu'),toggle=document.querySelector('#menuToggle');
+toggle?.addEventListener('click',()=>{const open=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'✕':'☰';document.body.classList.toggle('nav-open',open)});
+document.querySelectorAll('#menu a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');document.body.classList.remove('nav-open');toggle?.setAttribute('aria-expanded','false');if(toggle)toggle.textContent='☰'}));
+const observer='IntersectionObserver'in window?new IntersectionObserver(items=>items.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');observer.unobserve(x.target)}}),{threshold:.12}):null;document.querySelectorAll('.reveal').forEach(x=>observer?observer.observe(x):x.classList.add('visible'));
+document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(b=>b.setAttribute('aria-pressed','false'));btn.setAttribute('aria-pressed','true');const val=btn.dataset.filter;document.querySelectorAll('.filterable').forEach(el=>{el.hidden=val!=='todos'&&el.dataset.category!==val})}));
+document.querySelectorAll('.select-service').forEach(btn=>btn.addEventListener('click',()=>{const sel=document.getElementById('treatment');if(sel)sel.value=btn.dataset.service;document.querySelector('#cotizar')?.scrollIntoView({behavior:'smooth'})}));
+document.querySelectorAll('input[type=date]').forEach(el=>el.min=new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,10));
+document.getElementById('leadForm')?.addEventListener('submit',ev=>{ev.preventDefault();const form=ev.currentTarget;if(!form.reportValidity())return;const values=[...new FormData(form).entries()].filter(([k,v])=>String(v).trim()).map(([k,v])=>k+': '+v).join('\n');const text='Hola, quisiera consultar en OHANA.\n\n'+values+'\n\n(Mensaje generado desde una propuesta de diseño no oficial de NovaTec.)';const url='https://wa.me/595992437835?text='+encodeURIComponent(text);const win=window.open(url,'_blank','noopener,noreferrer');if(!win){window.location.href=url}const toast=document.getElementById('toast');toast?.classList.add('show');setTimeout(()=>toast?.classList.remove('show'),2600)});
+})();
+ </script></body></html>
