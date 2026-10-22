@@ -1,483 +1,65 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ACV Constructora | Si puedes soñarlo, podemos construirlo</title>
-<meta name="description" content="ACV Constructora: ingeniería, arquitectura y construcción de alto impacto. Proyectos, obras y refacciones llave en mano." />
-
-<!-- Tailwind CSS (CDN, JIT) -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          ink: { 950: '#09090b', 900: '#0c0c0f', 800: '#15151a' },
-          ember: { DEFAULT: '#ea580c', deep: '#c2410c' }
-        },
-        fontFamily: {
-          display: ['"Bebas Neue"', 'Oswald', 'sans-serif'],
-          sans: ['"Inter"', 'system-ui', 'sans-serif']
-        },
-        keyframes: {
-          fadeUp: { '0%': { opacity: 0, transform: 'translateY(24px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
-          glowPulse: { '0%,100%': { opacity: .35 }, '50%': { opacity: .7 } },
-          floaty: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } }
-        },
-        animation: {
-          fadeUp: 'fadeUp .8s ease forwards',
-          glowPulse: 'glowPulse 4s ease-in-out infinite',
-          floaty: 'floaty 3.5s ease-in-out infinite'
-        }
-      }
-    }
-  }
-</script>
-
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', sans-serif; background-color: #09090b; color: #e4e4e7; }
-  .font-display { font-family: 'Oswald', sans-serif; letter-spacing: 0.02em; }
-
-  /* Custom scrollbar */
-  ::-webkit-scrollbar { width: 8px; }
-  ::-webkit-scrollbar-track { background: #09090b; }
-  ::-webkit-scrollbar-thumb { background: #c2410c; border-radius: 4px; }
-
-  /* Blueprint grid background */
-  .blueprint-grid {
-    background-image:
-      linear-gradient(rgba(234,88,12,0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(234,88,12,0.06) 1px, transparent 1px);
-    background-size: 48px 48px;
-  }
-
-  /* Hero noise / texture overlay */
-  .hero-glow {
-    background: radial-gradient(circle at 80% 20%, rgba(234,88,12,0.25), transparent 45%),
-                radial-gradient(circle at 10% 80%, rgba(234,88,12,0.12), transparent 40%);
-  }
-
-  .text-stroke {
-    -webkit-text-stroke: 1px rgba(234,88,12,0.5);
-    color: transparent;
-  }
-
-  .clip-diagonal { clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%); }
-
-  /* Card hover sheen */
-  .sheen { position: relative; overflow: hidden; }
-  .sheen::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -150%;
-    width: 60%; height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(234,88,12,0.18), transparent);
-    transform: skewX(-20deg);
-    transition: left .7s ease;
-  }
-  .sheen:hover::before { left: 150%; }
-
-  .portfolio-tab.active {
-    background-color: #ea580c;
-    color: #09090b;
-    border-color: #ea580c;
-  }
-
-  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s ease, transform .8s ease; }
-  .reveal.in-view { opacity: 1; transform: translateY(0); }
-
-  .timeline-line {
-    background: linear-gradient(to bottom, #ea580c, rgba(234,88,12,0.05));
-  }
-
-  input::placeholder, textarea::placeholder { color: #71717a; }
-</style>
-</head>
-
-<body class="antialiased overflow-x-hidden">
-
-<!-- ============ NAVBAR ============ -->
-<header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500">
-  <nav class="flex items-center justify-between px-6 md:px-12 py-5 transition-all duration-500" id="navInner">
-    <!-- Logo conceptual -->
-    <a href="#hero" class="flex items-center gap-3 group">
-      <svg width="40" height="40" viewBox="0 0 48 48" class="shrink-0">
-        <polyline points="4,40 4,18 24,6 44,18 44,40" fill="none" stroke="#ea580c" stroke-width="2.5" stroke-linejoin="round" class="group-hover:stroke-white transition-colors duration-500"/>
-        <line x1="24" y1="6" x2="24" y2="40" stroke="#e4e4e7" stroke-width="2"/>
-        <line x1="4" y1="40" x2="44" y2="40" stroke="#e4e4e7" stroke-width="2"/>
-      </svg>
-      <div class="leading-tight">
-        <p class="font-display text-xl md:text-2xl tracking-widest text-white">ACV</p>
-        <p class="text-[10px] md:text-xs uppercase tracking-[0.3em] text-ember -mt-1">Constructora</p>
-      </div>
-    </a>
-
-    <!-- Lema (desktop only) -->
-    <p class="hidden lg:block text-xs uppercase tracking-[0.25em] text-zinc-400 italic">
-      "Si puedes soñarlo, <span class="text-ember">podemos construirlo</span>"
-    </p>
-
-    <!-- Desktop menu -->
-    <ul class="hidden md:flex items-center gap-8 text-sm uppercase tracking-wider text-zinc-300">
-      <li><a href="#servicios" class="hover:text-ember transition-colors duration-300">Servicios</a></li>
-      <li><a href="#portafolio" class="hover:text-ember transition-colors duration-300">Portafolio</a></li>
-      <li><a href="#metodologia" class="hover:text-ember transition-colors duration-300">Metodología</a></li>
-      <li><a href="#contacto" class="px-5 py-2 border border-ember text-ember hover:bg-ember hover:text-ink-950 rounded-sm transition-all duration-300">Contacto</a></li>
-    </ul>
-
-    <!-- Mobile toggle -->
-    <button id="menuBtn" class="md:hidden flex flex-col gap-1.5 w-8 h-8 justify-center items-center" aria-label="Abrir menú">
-      <span class="block w-7 h-[2px] bg-white transition-all duration-300" id="bar1"></span>
-      <span class="block w-7 h-[2px] bg-white transition-all duration-300" id="bar2"></span>
-      <span class="block w-7 h-[2px] bg-white transition-all duration-300" id="bar3"></span>
-    </button>
-  </nav>
-
-  <!-- Mobile menu -->
-  <div id="mobileMenu" class="md:hidden hidden flex-col bg-ink-900/98 border-t border-zinc-800 px-6 py-6 gap-5 text-zinc-300 uppercase tracking-wider text-sm">
-    <a href="#servicios" class="block py-2 hover:text-ember">Servicios</a>
-    <a href="#portafolio" class="block py-2 hover:text-ember">Portafolio</a>
-    <a href="#metodologia" class="block py-2 hover:text-ember">Metodología</a>
-    <a href="#contacto" class="block py-2 text-ember">Contacto</a>
-  </div>
-</header>
-
-<!-- ============ HERO ============ -->
-<section id="hero" class="relative min-h-screen flex items-center justify-center blueprint-grid hero-glow overflow-hidden">
-  <!-- decorative architectural lines -->
-  <div class="absolute inset-0 pointer-events-none">
-    <div class="absolute top-1/4 left-0 w-full h-px bg-zinc-800"></div>
-    <div class="absolute top-1/2 left-0 w-full h-px bg-zinc-800/60"></div>
-    <div class="absolute -bottom-32 -right-32 w-[500px] h-[500px] rounded-full bg-ember/10 blur-3xl animate-glowPulse"></div>
-    <div class="absolute top-20 -left-20 w-[300px] h-[300px] rounded-full bg-ember/5 blur-3xl animate-glowPulse"></div>
-  </div>
-
-  <div class="relative z-10 max-w-6xl mx-auto px-6 text-center pt-24">
-    <p class="text-ember uppercase tracking-[0.4em] text-xs md:text-sm mb-6 reveal">Ingeniería &mdash; Arquitectura &mdash; Construcción</p>
-
-    <h1 class="font-display leading-[0.9] mb-6 reveal">
-      <span class="block text-5xl sm:text-7xl md:text-9xl text-white">CONSTRUIMOS</span>
-      <span class="block text-5xl sm:text-7xl md:text-9xl text-stroke">TU VISIÓN</span>
-    </h1>
-
-    <p class="max-w-2xl mx-auto text-zinc-400 text-base md:text-lg mb-10 reveal">
-      Si puedes soñarlo, <span class="text-ember font-medium">podemos construirlo</span>. Transformamos ideas en estructuras sólidas, con precisión técnica y un estándar de excelencia que define cada proyecto que entregamos.
-    </p>
-
-    <div class="flex flex-col sm:flex-row gap-4 justify-center reveal">
-      <a href="#contacto" class="px-8 py-4 bg-ember hover:bg-ember-deep text-ink-950 font-semibold uppercase tracking-wider text-sm rounded-sm transition-all duration-300 shadow-lg shadow-ember/30 hover:shadow-ember/50 hover:-translate-y-1">
-        Cotizar mi Obra
-      </a>
-      <a href="#portafolio" class="px-8 py-4 border border-zinc-700 hover:border-ember text-zinc-200 hover:text-ember font-semibold uppercase tracking-wider text-sm rounded-sm transition-all duration-300">
-        Ver Portafolio
-      </a>
-    </div>
-  </div>
-
-  <!-- scroll cue -->
-  <a href="#servicios" class="absolute bottom-10 left-1/2 -translate-x-1/2 text-zinc-500 hover:text-ember transition-colors animate-floaty">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4v16m0 0l-6-6m6 6l6-6"/></svg>
-  </a>
-</section>
-
-<!-- Floating CTA (mobile sticky) -->
-<a href="#contacto" id="floatingCta" class="fixed bottom-6 right-6 z-40 px-6 py-3 bg-ember text-ink-950 font-semibold uppercase text-xs tracking-wider rounded-full shadow-2xl shadow-ember/40 hover:bg-ember-deep transition-all duration-300 opacity-0 translate-y-4 pointer-events-none">
-  Cotizar mi Obra
-</a>
-
-<!-- ============ SERVICIOS ============ -->
-<section id="servicios" class="relative py-28 px-6 md:px-12 bg-ink-900 border-t border-zinc-800/60">
-  <div class="max-w-7xl mx-auto">
-    <div class="mb-16 reveal">
-      <p class="text-ember uppercase tracking-[0.3em] text-xs mb-3">Lo que hacemos</p>
-      <h2 class="font-display text-4xl md:text-6xl text-white">Servicios Especializados</h2>
-    </div>
-
-    <div id="servicesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-  </div>
-</section>
-
-<!-- ============ PORTAFOLIO ============ -->
-<section id="portafolio" class="relative py-28 px-6 md:px-12 bg-ink-950 border-t border-zinc-800/60">
-  <div class="max-w-7xl mx-auto">
-    <div class="mb-12 reveal">
-      <p class="text-ember uppercase tracking-[0.3em] text-xs mb-3">Nuestro trabajo</p>
-      <h2 class="font-display text-4xl md:text-6xl text-white mb-8">Portafolio</h2>
-
-      <!-- Tabs -->
-      <div class="flex flex-wrap gap-3" id="portfolioTabs">
-        <button data-filter="todos" class="portfolio-tab active px-6 py-2.5 border border-zinc-700 rounded-full text-sm uppercase tracking-wider transition-all duration-300">Todos</button>
-        <button data-filter="proyectos" class="portfolio-tab px-6 py-2.5 border border-zinc-700 rounded-full text-sm uppercase tracking-wider transition-all duration-300 text-zinc-300">Proyectos</button>
-        <button data-filter="obras" class="portfolio-tab px-6 py-2.5 border border-zinc-700 rounded-full text-sm uppercase tracking-wider transition-all duration-300 text-zinc-300">Obras</button>
-        <button data-filter="refacciones" class="portfolio-tab px-6 py-2.5 border border-zinc-700 rounded-full text-sm uppercase tracking-wider transition-all duration-300 text-zinc-300">Refacciones</button>
-      </div>
-    </div>
-
-    <div id="portfolioGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-  </div>
-</section>
-
-<!-- ============ METODOLOGÍA ============ -->
-<section id="metodologia" class="relative py-28 px-6 md:px-12 bg-ink-900 border-t border-zinc-800/60 overflow-hidden">
-  <div class="max-w-5xl mx-auto">
-    <div class="mb-20 reveal text-center">
-      <p class="text-ember uppercase tracking-[0.3em] text-xs mb-3">Cómo trabajamos</p>
-      <h2 class="font-display text-4xl md:text-6xl text-white">Metodología de Trabajo</h2>
-    </div>
-
-    <div class="relative" id="timeline">
-      <div class="absolute left-[27px] md:left-1/2 top-0 bottom-0 w-px timeline-line md:-translate-x-1/2"></div>
-      <!-- phases injected by JS -->
-      <div id="timelineItems" class="space-y-16"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CONTACTO / FOOTER ============ -->
-<section id="contacto" class="relative py-28 px-6 md:px-12 bg-ink-950 border-t border-zinc-800/60 blueprint-grid">
-  <div class="max-w-7xl mx-auto">
-    <div class="mb-16 reveal">
-      <p class="text-ember uppercase tracking-[0.3em] text-xs mb-3">Hablemos</p>
-      <h2 class="font-display text-4xl md:text-6xl text-white">Cotiza tu Próxima Obra</h2>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-      <!-- Form -->
-      <form id="contactForm" class="bg-ink-900/70 border border-zinc-800 rounded-lg p-8 space-y-5 reveal" onsubmit="return false;">
-        <div>
-          <label class="block text-xs uppercase tracking-wider text-zinc-400 mb-2">Nombre completo</label>
-          <input type="text" required class="w-full bg-ink-950 border border-zinc-700 focus:border-ember outline-none rounded-sm px-4 py-3 text-sm transition-colors" placeholder="Tu nombre" />
-        </div>
-        <div>
-          <label class="block text-xs uppercase tracking-wider text-zinc-400 mb-2">Teléfono</label>
-          <input type="tel" required class="w-full bg-ink-950 border border-zinc-700 focus:border-ember outline-none rounded-sm px-4 py-3 text-sm transition-colors" placeholder="+591 ..." />
-        </div>
-        <div>
-          <label class="block text-xs uppercase tracking-wider text-zinc-400 mb-2">Cuéntanos tu proyecto</label>
-          <textarea rows="4" required class="w-full bg-ink-950 border border-zinc-700 focus:border-ember outline-none rounded-sm px-4 py-3 text-sm transition-colors resize-none" placeholder="Describe tu obra, refacción o proyecto..."></textarea>
-        </div>
-        <button type="submit" id="formSubmit" class="w-full py-4 bg-ember hover:bg-ember-deep text-ink-950 font-semibold uppercase tracking-wider text-sm rounded-sm transition-all duration-300">
-          Enviar Solicitud
-        </button>
-        <p id="formSuccess" class="hidden text-ember text-sm text-center pt-2">¡Gracias! Tu solicitud fue registrada. Te contactaremos pronto.</p>
-      </form>
-
-      <!-- Map + WhatsApp -->
-      <div class="space-y-6 reveal">
-        <div class="relative rounded-lg overflow-hidden border border-zinc-800 h-64 blueprint-grid flex items-center justify-center bg-ink-900/50">
-          <div class="absolute inset-0 hero-glow"></div>
-          <div class="relative z-10 text-center px-6">
-            <svg class="mx-auto mb-3" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="1.5"><path d="M12 22s8-7.58 8-13a8 8 0 1 0-16 0c0 5.42 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>
-            <p class="text-zinc-300 text-sm">Atendemos proyectos a nivel nacional.<br/>Coordina una visita técnica con nuestro equipo.</p>
-          </div>
-        </div>
-
-        <a href="https://wa.me/595992448444?text=Hola%20ACV%20Constructora%2C%20quiero%20cotizar%20mi%20obra" target="_blank" rel="noopener noreferrer"
-           class="flex items-center justify-center gap-3 w-full py-4 bg-green-600 hover:bg-green-500 text-white font-semibold uppercase tracking-wider text-sm rounded-sm transition-all duration-300">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-1.4-.6-2.4-1.4-3.2-2.7-.1-.2-.1-.4.1-.6.2-.2.5-.5.6-.7.1-.2.1-.4 0-.6-.1-.2-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 3 4.7 4.1 2.3.9 2.8.7 3.3.6.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 20.2 12 8.2 8.2 0 0 1 12 20.2z"/></svg>
-          Chatea con nosotros 24/7
-        </a>
-
-        <div class="grid grid-cols-2 gap-4 text-sm">
-          <div class="bg-ink-900/60 border border-zinc-800 rounded-sm p-4">
-            <p class="text-zinc-500 uppercase text-xs tracking-wider mb-1">Email</p>
-            <p class="text-zinc-200">contacto@acvconstructora.com</p>
-          </div>
-          <div class="bg-ink-900/60 border border-zinc-800 rounded-sm p-4">
-            <p class="text-zinc-500 uppercase text-xs tracking-wider mb-1">Horario</p>
-            <p class="text-zinc-200">Lun &ndash; Sáb, 8:00 &ndash; 18:00</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="max-w-7xl mx-auto mt-24 pt-10 border-t border-zinc-800/60 flex flex-col md:flex-row items-center justify-between gap-4 text-zinc-500 text-xs">
-    <div class="flex items-center gap-2">
-      <svg width="22" height="22" viewBox="0 0 48 48"><polyline points="4,40 4,18 24,6 44,18 44,40" fill="none" stroke="#ea580c" stroke-width="3" stroke-linejoin="round"/></svg>
-      <span class="uppercase tracking-widest">ACV Constructora &copy; <span id="year"></span></span>
-    </div>
-    <p class="italic">"Si puedes soñarlo, podemos construirlo"</p>
-  </footer>
-</section>
-
-<script>
-  // ===== Year =====
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // ===== Navbar scroll state =====
-  const navInner = document.getElementById('navInner');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-      navInner.classList.add('bg-ink-950/90', 'backdrop-blur-md', 'border-b', 'border-zinc-800/60', 'py-3');
-    } else {
-      navInner.classList.remove('bg-ink-950/90', 'backdrop-blur-md', 'border-b', 'border-zinc-800/60', 'py-3');
-    }
-  });
-
-  // ===== Mobile menu toggle =====
-  const menuBtn = document.getElementById('menuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const bar1 = document.getElementById('bar1'), bar2 = document.getElementById('bar2'), bar3 = document.getElementById('bar3');
-  let menuOpen = false;
-  menuBtn.addEventListener('click', () => {
-    menuOpen = !menuOpen;
-    mobileMenu.classList.toggle('hidden');
-    mobileMenu.classList.toggle('flex');
-    bar1.style.transform = menuOpen ? 'rotate(45deg) translateY(7px)' : '';
-    bar2.style.opacity = menuOpen ? '0' : '1';
-    bar3.style.transform = menuOpen ? 'rotate(-45deg) translateY(-7px)' : '';
-  });
-  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    menuOpen = false;
-    mobileMenu.classList.add('hidden');
-    mobileMenu.classList.remove('flex');
-    bar1.style.transform = ''; bar2.style.opacity = '1'; bar3.style.transform = '';
-  }));
-
-  // ===== Floating CTA visibility (hide once hero is out of view, show afterwards) =====
-  const floatingCta = document.getElementById('floatingCta');
-  const heroSection = document.getElementById('hero');
-  const ctaObserver = new IntersectionObserver(([entry]) => {
-    if (!entry.isIntersecting) {
-      floatingCta.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
-    } else {
-      floatingCta.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
-    }
-  }, { threshold: 0.1 });
-  ctaObserver.observe(heroSection);
-
-  // ===== Reveal on scroll =====
-  const revealEls = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('in-view');
-    });
-  }, { threshold: 0.15 });
-  revealEls.forEach(el => revealObserver.observe(el));
-
-  // ===== Services Data =====
-  const services = [
-    { title: 'Construcción en General', icon: '🏗️', desc: 'Ejecución integral de obra civil con altos estándares de calidad estructural y acabado.' },
-    { title: 'Equipamiento de Piscinas', icon: '🌊', desc: 'Diseño, construcción y equipamiento técnico de piscinas residenciales y comerciales.' },
-    { title: 'Fiscalización de Obras', icon: '📐', desc: 'Supervisión técnica rigurosa para garantizar cumplimiento de plazos, calidad y normativa.' },
-    { title: 'Planos y Permisos Municipales', icon: '📋', desc: 'Elaboración de planos técnicos y gestión completa de permisos ante entidades municipales.' },
-    { title: 'Remodelaciones y Ampliaciones', icon: '🔨', desc: 'Transformamos espacios existentes con intervenciones funcionales y estéticas.' },
-    { title: 'Gerenciamiento de Obras', icon: '🧭', desc: 'Dirección integral del proyecto: recursos, tiempos y equipos bajo un mismo control.' },
-    { title: 'Cómputo y Presupuesto', icon: '🧮', desc: 'Estimaciones precisas de materiales, mano de obra y costos para una planificación certera.' },
-    { title: 'Diseños de Proyectos', icon: '✏️', desc: 'Desarrollo arquitectónico conceptual y técnico adaptado a la visión del cliente.' },
-    { title: 'Diseño de Muebles', icon: '🪵', desc: 'Mobiliario a medida que complementa la identidad arquitectónica de cada espacio.' },
-  ];
-
-  const servicesGrid = document.getElementById('servicesGrid');
-  services.forEach((s, i) => {
-    const card = document.createElement('div');
-    card.className = 'sheen reveal group relative bg-ink-950 border border-zinc-800 hover:border-ember/60 rounded-lg p-8 transition-all duration-500 hover:-translate-y-1';
-    card.style.transitionDelay = `${(i % 3) * 80}ms`;
-    card.innerHTML = `
-      <div class="text-4xl mb-5">${s.icon}</div>
-      <h3 class="font-display text-xl text-white mb-3 group-hover:text-ember transition-colors duration-300">${s.title}</h3>
-      <p class="text-zinc-400 text-sm leading-relaxed">${s.desc}</p>
-      <div class="absolute bottom-0 left-0 h-[2px] w-0 bg-ember group-hover:w-full transition-all duration-500"></div>
-    `;
-    servicesGrid.appendChild(card);
-    revealObserver.observe(card);
-  });
-
-  // ===== Portfolio Data =====
-  const projects = [
-    { name: 'Residencia Cumbre Norte', category: 'proyectos', tag: 'Diseño Arquitectónico', img: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=800&auto=format&fit=crop' },
-    { name: 'Edificio Plaza Central', category: 'obras', tag: 'Construcción en Ejecución', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop' },
-    { name: 'Casa del Valle', category: 'refacciones', tag: 'Ampliación y Remodelación', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop' },
-    { name: 'Complejo Acuático Mirador', category: 'proyectos', tag: 'Diseño + Piscina', img: 'https://images.unsplash.com/photo-1561501900-3701fa6a0864?q=80&w=800&auto=format&fit=crop' },
-    { name: 'Torre Empresarial Sur', category: 'obras', tag: 'Gerenciamiento de Obra', img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop' },
-    { name: 'Loft Industrial Este', category: 'refacciones', tag: 'Refacción Integral', img: 'https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=800&auto=format&fit=crop' },
-  ];
-
-  const portfolioGrid = document.getElementById('portfolioGrid');
-  function renderPortfolio(filter = 'todos') {
-    portfolioGrid.innerHTML = '';
-    projects
-      .filter(p => filter === 'todos' || p.category === filter)
-      .forEach((p, i) => {
-        const item = document.createElement('div');
-        item.className = 'reveal in-view group relative rounded-lg overflow-hidden border border-zinc-800 hover:border-ember/60 transition-all duration-500 h-72';
-        item.innerHTML = `
-          <img src="${p.img}" alt="${p.name}" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/40 to-transparent"></div>
-          <div class="absolute bottom-0 left-0 p-6">
-            <p class="text-ember text-xs uppercase tracking-widest mb-1">${p.tag}</p>
-            <h3 class="font-display text-xl text-white">${p.name}</h3>
-          </div>
-        `;
-        portfolioGrid.appendChild(item);
-      });
-  }
-  renderPortfolio();
-
-  document.querySelectorAll('.portfolio-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.portfolio-tab').forEach(t => {
-        t.classList.remove('active');
-        t.classList.add('text-zinc-300');
-      });
-      tab.classList.add('active');
-      tab.classList.remove('text-zinc-300');
-      renderPortfolio(tab.dataset.filter);
-    });
-  });
-
-  // ===== Methodology Timeline =====
-  const phases = [
-    { num: '01', title: 'Planificación y Diseño', desc: 'Relevamiento, conceptualización arquitectónica y desarrollo de planos técnicos preliminares.' },
-    { num: '02', title: 'Cómputo y Presupuesto', desc: 'Estimación detallada de materiales, mano de obra y costos para una propuesta transparente.' },
-    { num: '03', title: 'Gestión de Permisos', desc: 'Tramitación de permisos municipales y aprobaciones normativas necesarias para iniciar obra.' },
-    { num: '04', title: 'Ejecución y Fiscalización', desc: 'Construcción activa con supervisión técnica permanente para garantizar calidad y plazos.' },
-    { num: '05', title: 'Entrega Llave en Mano', desc: 'Finalización integral del proyecto, listo para habitar o utilizar sin pendientes.' },
-  ];
-
-  const timelineItems = document.getElementById('timelineItems');
-  phases.forEach((p, i) => {
-    const isLeft = i % 2 === 0;
-    const row = document.createElement('div');
-    row.className = 'reveal relative flex flex-col md:flex-row items-start md:items-center gap-6';
-    row.innerHTML = `
-      <div class="flex md:contents">
-        <div class="relative z-10 flex-shrink-0 w-14 h-14 rounded-full bg-ember text-ink-950 font-display flex items-center justify-center text-lg shadow-lg shadow-ember/30 ${isLeft ? 'md:order-2' : 'md:order-1'}">${p.num}</div>
-        <div class="md:w-[calc(50%-3.5rem)] ${isLeft ? 'md:order-1 md:text-right' : 'md:order-3'} pl-4">
-          ${isLeft ? `<h3 class="font-display text-2xl text-white mb-2">${p.title}</h3><p class="text-zinc-400 text-sm leading-relaxed">${p.desc}</p>` : ''}
-        </div>
-        <div class="hidden md:block md:w-[calc(50%-3.5rem)] ${isLeft ? 'md:order-3' : 'md:order-1'}">
-          ${!isLeft ? `<h3 class="font-display text-2xl text-white mb-2">${p.title}</h3><p class="text-zinc-400 text-sm leading-relaxed">${p.desc}</p>` : ''}
-        </div>
-      </div>
-      <div class="md:hidden pl-4 -mt-2">
-        ${isLeft ? '' : `<h3 class="font-display text-2xl text-white mb-2">${p.title}</h3><p class="text-zinc-400 text-sm leading-relaxed">${p.desc}</p>`}
-      </div>
-    `;
-    timelineItems.appendChild(row);
-    revealObserver.observe(row);
-  });
-
-  // ===== Contact form (front-end only feedback) =====
-  const contactForm = document.getElementById('contactForm');
-  const formSubmit = document.getElementById('formSubmit');
-  const formSuccess = document.getElementById('formSuccess');
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    formSubmit.textContent = 'Enviado ✓';
-    formSubmit.disabled = true;
-    formSubmit.classList.add('opacity-60', 'cursor-not-allowed');
-    formSuccess.classList.remove('hidden');
-  });
-</script>
-</body>
-</html>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f8f7f4"><meta name="robots" content="noindex,nofollow,noarchive"><meta name="description" content="Demostración visual de sitio web realizada por NovaTec Engineering para OHANA. No es un sitio oficial de la empresa."><title>OHANA | Propuesta visual · NovaTec Engineering</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://images.unsplash.com"><style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{--bg:#f8f7f4;--ink:#171a22;--muted:#777b85;--accent:#f47f6a;--accent2:#f6c44c;--card:#fff;--line:rgba(25,29,33,.12);--font:'Manrope',sans-serif;--display:'Fraunces',serif;--radius:22px;--max:1240px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}body.nav-open{overflow:hidden}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}img{max-width:100%;display:block}::selection{background:var(--accent);color:#fff}:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:fixed;left:1rem;top:-6rem;background:var(--ink);color:var(--bg);z-index:999;padding:1rem}.skip:focus{top:1rem}
+#site{overflow:hidden}.wrap{width:min(var(--max),calc(100% - 76px));margin-inline:auto}
+.notice{background:#111722;color:#ecf0f5;text-align:center;font-size:11px;font-weight:700;letter-spacing:.045em;padding:9px 16px;line-height:1.5}.notice strong{color:#ffca77}
+header{height:84px;position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+nav{height:100%;display:flex;justify-content:space-between;align-items:center;gap:22px}.logo{font-size:24px;font-weight:900;line-height:1;letter-spacing:-.085em;max-width:260px;white-space:nowrap}.logo span{color:var(--accent)}.navlinks{display:flex;gap:30px;align-items:center}.navlinks>a:not(.btn){font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;transition:opacity .2s}.navlinks>a:hover{opacity:.55}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;padding:16px 23px;border-radius:100px;background:var(--ink);color:var(--bg);font-size:13px;font-weight:800;letter-spacing:-.015em;min-height:50px;transition:transform .23s,background .23s,box-shadow .23s}.btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px #0002}.btn.accent{background:var(--accent);color:var(--btnink,#151515)}.btn.outline{background:transparent;border:1px solid currentColor;color:inherit}.btn.white{background:#fff;color:#161616}.btn.block{width:100%}.btn svg,.arrow{width:18px;height:18px}.mobile-toggle{display:none;border:0;background:none;color:inherit;padding:8px;font-size:26px}
+section{scroll-margin-top:90px}.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:800;letter-spacing:.17em;text-transform:uppercase}.eyebrow:before{content:'';height:8px;width:8px;background:var(--accent);border-radius:50%}.lead{font-size:clamp(17px,1.5vw,20px);line-height:1.75;color:var(--muted);max-width:635px}.muted{color:var(--muted)}.serif{font-family:var(--display)}
+h1,h2,h3,p{margin-top:0}h1{font-family:var(--display);font-weight:650;letter-spacing:-.055em;line-height:.99;font-size:clamp(56px,7.6vw,120px);margin-bottom:26px}h2{font-family:var(--display);font-weight:650;letter-spacing:-.052em;line-height:1.06;font-size:clamp(43px,5vw,76px);margin-bottom:18px}h3{font-size:23px;line-height:1.2;letter-spacing:-.035em}p{line-height:1.7}.section{padding:116px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:32px;margin-bottom:52px}.section-head>div:first-child{max-width:760px}
+.hero{min-height:760px;position:relative;display:flex;align-items:center}.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;align-items:center;gap:30px;padding-top:75px;padding-bottom:80px}.hero h1 em{font-style:normal;color:var(--accent)}.hero .lead{max-width:530px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}.hero-photo{height:580px;position:relative;overflow:hidden;border-radius:var(--radius);background:#dad5c9;box-shadow:0 28px 80px #0002}.hero-photo img{height:100%;width:100%;object-fit:cover}.hero-stamp{position:absolute;bottom:24px;left:24px;right:24px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fffffff0;border-radius:14px;font-weight:700;font-size:13px;color:#191919;backdrop-filter:blur(7px)}.hero-stamp small{color:#777;font-size:11px}
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;overflow:hidden}.marquee-track{white-space:nowrap;display:flex;gap:65px;align-items:center;width:max-content;animation:marq 30s linear infinite}.marquee span{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.marquee b{color:var(--accent);font-size:22px}@keyframes marq{to{transform:translateX(-50%)}}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:21px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.feature{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:31px;transition:transform .25s}.feature:hover{transform:translateY(-6px)}.feature .num{color:var(--accent);font-weight:800;font-size:13px;margin-bottom:54px}.feature h3{margin:0 0 14px}.feature p{margin-bottom:0;font-size:14px;color:var(--muted)}.feature-icon{font-size:32px;margin-bottom:26px}
+.gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.gallery figure{margin:0;position:relative;overflow:hidden;border-radius:var(--radius);background:#ddd;grid-column:span 4;min-height:370px}.gallery figure.wide{grid-column:span 6;min-height:440px}.gallery img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;transition:transform .6s}.gallery figure:hover img{transform:scale(1.06)}.gallery figcaption{position:absolute;bottom:0;inset-inline:0;padding:45px 24px 22px;color:#fff;font-weight:750;background:linear-gradient(transparent,#000a)}.gallery figcaption small{display:block;font-size:11px;color:#fff9;font-weight:600;margin-top:4px}
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}.filter{border:1px solid var(--line);background:transparent;color:var(--ink);padding:12px 19px;border-radius:80px;font-size:12px;font-weight:800;transition:.2s}.filter[aria-pressed=true],.filter:hover{background:var(--ink);color:var(--bg)}.filterable[hidden]{display:none!important}
+.quote{background:var(--card);border:1px solid var(--line);border-radius:calc(var(--radius) + 9px);padding:48px;box-shadow:0 24px 70px #0000000c}.quote h3{font-family:var(--display);font-size:clamp(32px,3.5vw,54px);margin:0 0 12px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.field{display:flex;flex-direction:column;gap:8px}.field.wide{grid-column:1/-1}.field label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.085em}.field input,.field select,.field textarea{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:12px;padding:15px 16px;outline:none;min-height:53px}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 20%,transparent)}textarea{min-height:110px!important;resize:vertical}.smallnote{font-size:12px;line-height:1.65;color:var(--muted)}.quote-bottom{display:flex;justify-content:space-between;align-items:center;gap:25px;margin-top:22px}.quote-bottom p{margin:0;max-width:350px}
+.bento{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:stretch}.bento-photo{min-height:530px;position:relative;border-radius:var(--radius);overflow:hidden}.bento-photo img{position:absolute;width:100%;height:100%;object-fit:cover}.bento-copy{background:var(--ink);color:var(--bg);padding:65px 48px;border-radius:var(--radius);display:flex;flex-direction:column;justify-content:space-between}.bento-copy h2{font-size:clamp(42px,4.5vw,67px)}.bento-copy p{color:color-mix(in srgb,var(--bg) 72%,transparent)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}.pill{border:1px solid currentColor;border-radius:100px;padding:9px 15px;font-size:12px;font-weight:750}.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:100px;align-items:center}.split-image{height:540px;border-radius:var(--radius);overflow:hidden}.split-image img{height:100%;width:100%;object-fit:cover}.checklist{padding:0;list-style:none;display:grid;gap:18px}.checklist li{display:flex;gap:14px;align-items:flex-start;line-height:1.5}.checklist li:before{content:'✓';color:var(--accent);font-weight:900}.closing{background:var(--ink);color:var(--bg);padding:100px 0;position:relative;overflow:hidden}.closing h2{font-size:clamp(48px,7.5vw,112px);max-width:980px}.closing .lead{color:color-mix(in srgb,var(--bg) 65%,transparent)}
+footer{background:#111722;color:#ffffffa8;padding:42px 0}.footer-grid{display:flex;justify-content:space-between;align-items:flex-start;gap:35px;flex-wrap:wrap}.footer-grid strong{color:white}.footer-links{display:flex;gap:25px;flex-wrap:wrap;font-size:12px}.footer-fine{border-top:1px solid #ffffff24;margin-top:35px;padding-top:20px;font-size:11px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;line-height:1.5}
+.float-wa{position:fixed;right:25px;bottom:25px;background:#23c46b;color:#092016;border:2px solid white;border-radius:100px;z-index:29;box-shadow:0 10px 30px #0003;padding:14px 17px;font-size:13px;font-weight:850;display:flex;align-items:center;gap:8px;transition:transform .2s}.float-wa:hover{transform:translateY(-4px)}.toast{position:fixed;left:50%;bottom:25px;transform:translateX(-50%) translateY(150px);padding:14px 24px;background:#151515;color:white;font-size:13px;font-weight:700;z-index:99;border-radius:12px;transition:transform .25s}.toast.show{transform:translateX(-50%) translateY(0)}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .65s,transform .65s}.reveal.visible{opacity:1;transform:none}
+[data-theme=party]{--bg:#fffaf0;--ink:#332349;--muted:#786e83;--accent:#ed65a9;--accent2:#f8bf54;--card:#fff;--display:'Fraunces',serif;--radius:29px;--btnink:#fff}
+[data-theme=car]{--bg:#0c1115;--ink:#f5f6f2;--muted:#a4adb1;--accent:#d5ef68;--accent2:#98abbc;--card:#171e23;--line:#ffffff1a;--display:'Space Grotesk',sans-serif;--radius:14px;--btnink:#142012}
+[data-theme=merch]{--bg:#f8f6f0;--ink:#1a2450;--muted:#647086;--accent:#ff634e;--accent2:#f1cf30;--card:#fff;--display:'Space Grotesk',sans-serif;--radius:22px;--btnink:#fff}
+[data-theme=reception]{--bg:#fbf7f3;--ink:#3d2636;--muted:#877985;--accent:#a86a8d;--accent2:#d8b88a;--card:#fff;--display:'Playfair Display',serif;--radius:9px;--btnink:#fff}
+[data-theme=boho]{--bg:#f3eee5;--ink:#3f392e;--muted:#867b6e;--accent:#b45f44;--accent2:#8d9867;--card:#fffdf6;--display:'Fraunces',serif;--radius:4px;--btnink:#fff}
+[data-theme=furniture]{--bg:#f5f3ed;--ink:#292c26;--muted:#7d8078;--accent:#9c6f47;--accent2:#8b9584;--card:#fff;--display:'Manrope',sans-serif;--radius:3px;--btnink:#fff}
+[data-theme=car] header{background:#0c1115ee}[data-theme=car] .hero-photo{box-shadow:none}[data-theme=car] .hero-stamp{background:#101619de;color:#eff2e5;border:1px solid #ffffff28}[data-theme=car] .hero-stamp small{color:#aab2b3}[data-theme=car] .filter[aria-pressed=true]{background:var(--accent);color:#121a1b}[data-theme=car] .quote{box-shadow:none}
+[data-theme=party] .hero{background:radial-gradient(circle at 85% 15%,#f7ddeb 0,transparent 40%),radial-gradient(circle at 10% 80%,#fff1cc,transparent 47%)}[data-theme=party] .hero-photo{border-radius:180px 180px 45px 45px;transform:rotate(1deg)}[data-theme=party] .hero-stamp{transform:rotate(-1deg)}[data-theme=party] .marquee{background:#ffe7a1}
+[data-theme=merch] .hero{background:linear-gradient(135deg,#f6f3e8 55%,#f9e8da)}[data-theme=merch] .hero h1{text-transform:uppercase;font-size:clamp(60px,8.6vw,130px);letter-spacing:-.09em}[data-theme=merch] .hero-photo{border-radius:38% 38% 12% 12%}[data-theme=merch] .marquee{background:var(--accent2)}
+[data-theme=reception] .hero-photo{border-radius:220px 220px 9px 9px}[data-theme=reception] .hero h1{font-weight:400}[data-theme=reception] .hero h1 em{font-style:italic}[data-theme=reception] .eyebrow:before{border-radius:0}
+[data-theme=boho] .hero-photo{border-radius:240px 240px 0 0}[data-theme=boho] .hero h1 em{font-style:italic}[data-theme=boho] .feature{box-shadow:9px 9px 0 #d7cbb7}[data-theme=boho] .marquee{background:#d9dac6}
+[data-theme=furniture] .hero h1{text-transform:uppercase;font-weight:800;letter-spacing:-.075em}[data-theme=furniture] .hero-photo{border-radius:2px}[data-theme=furniture] .feature{border-radius:3px}[data-theme=furniture] .btn{border-radius:3px}[data-theme=furniture] .marquee{background:#e9e7de}
+@media(max-width:1000px){.wrap{width:min(var(--max),calc(100% - 42px))}.navlinks{gap:15px}.navlinks>a:not(.btn){font-size:11px}.logo{font-size:21px}.hero-grid{grid-template-columns:1fr 1fr}.hero-photo{height:490px}.split{gap:45px}.bento-copy{padding:42px 30px}}
+@media(max-width:740px){header{height:68px}.wrap{width:calc(100% - 34px)}.mobile-toggle{display:block}.navlinks{display:none;position:absolute;top:68px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);padding:25px 20px 35px;flex-direction:column;align-items:stretch;gap:22px}.navlinks.open{display:flex}.navlinks>a:not(.btn){font-size:14px}.hero{min-height:auto}.hero-grid{grid-template-columns:1fr;gap:35px;padding-top:60px;padding-bottom:44px}.hero-photo{height:400px}.hero h1{font-size:clamp(50px,14vw,90px)}.hero .lead{font-size:16px}.section{padding:75px 0}.section-head{display:block;margin-bottom:30px}.grid3,.grid2{grid-template-columns:1fr}.feature .num{margin-bottom:25px}.gallery{grid-template-columns:1fr 1fr;gap:10px}.gallery figure,.gallery figure.wide{grid-column:auto;min-height:230px}.bento,.split{grid-template-columns:1fr;gap:20px}.bento-photo,.split-image{height:340px;min-height:340px}.bento-copy{padding:34px}.quote{padding:28px 20px}.form-grid{grid-template-columns:1fr}.quote-bottom{display:block}.quote-bottom .btn{width:100%;margin-top:18px}.closing{padding:70px 0}.float-wa{right:16px;bottom:16px}.hero-stamp{left:12px;right:12px;bottom:12px;font-size:11px;padding:12px}.hero-stamp small{font-size:10px}.gallery figcaption{font-size:11px;padding:35px 12px 14px}}
+@media(max-width:400px){.gallery{grid-template-columns:1fr}.gallery figure,.gallery figure.wide{min-height:280px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+</style></head><body>
+<a class="skip" href="#contenido">Ir al contenido</a>
+<div class="notice"><strong>DEMO NOVATEC</strong> · Propuesta visual independiente, no oficial ni encargada por OHANA. Fotos ilustrativas; información a validar.</div>
+<div id="site" data-theme="boho">
+<header><nav class="wrap" aria-label="Navegación principal"><a class="logo" href="#inicio" aria-label="Inicio de OHANA">ohana<span> ✳</span></a><button class="mobile-toggle" type="button" id="menuToggle" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">☰</button><div class="navlinks" id="menu"><a href="#universo" >Universo</a><a href="#coleccion" >Colección</a><a href="#proceso" >Proceso</a><a href="#cotizar" class="btn accent">Conversar ↗</a></div></nav></header>
+<main id="contenido">
+<section class="hero" id="inicio"><div class="wrap hero-grid"><div class="hero-copy reveal"><span class="eyebrow">Diseño de mobiliario · Asunción</span><h1 style="margin-top:25px">Espacios con <em>alma.</em></h1><p class="lead">Diseño, texturas y piezas que no se parecen a ninguna otra. Mobiliario a medida y retapizados para hogares con personalidad.</p><div class="hero-actions"><a href="#cotizar" class="btn accent">Contar mi idea <span aria-hidden="true">↗</span></a><a class="btn outline" href="#coleccion">Explorar la propuesta ↓</a></div><p class="smallnote" style="margin-top:24px">Concepto de sitio web · No constituye una oferta comercial oficial de OHANA.</p></div><div class="hero-photo reveal"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=85" alt="Fotografía ilustrativa de Diseño de mobiliario · Asunción" fetchpriority="high" onerror="this.style.opacity='.17';this.style.filter='grayscale(1)'"><div class="hero-stamp"><span>Diseñamos · Fabricamos · Renovamos</span><small>Recoleta · Asunción</small></div></div></div></section>
+<div class="marquee" aria-hidden="true"><div class="marquee-track"><b>✳</b><span>DISEÑO</span><b>✳</b><span>TEXTURAS</span><b>✳</b><span>COLOR</span><b>✳</b><span>HECHO A MEDIDA</span><b>✳</b><span>DISEÑO</span><b>✳</b><span>TEXTURAS</span><b>✳</b><span>COLOR</span><b>✳</b><span>HECHO A MEDIDA</span><b>✳</b><span>DISEÑO</span><b>✳</b><span>TEXTURAS</span><b>✳</b><span>COLOR</span><b>✳</b><span>HECHO A MEDIDA</span><b>✳</b><span>DISEÑO</span><b>✳</b><span>TEXTURAS</span><b>✳</b><span>COLOR</span><b>✳</b><span>HECHO A MEDIDA</span></div></div>
+<section class="section" id="universo"><div class="wrap"><div class="section-head reveal"><div><span class="eyebrow">Lo que nos mueve</span><h2>Piezas para sentirte en casa.</h2><p class="lead">No se trata solo de llenar espacios, sino de darles personalidad.</p></div><a href="#cotizar" class="btn outline">Contanos tu proyecto ↗</a></div><div class="grid3"><article class="feature reveal"><div class="num">01 / 03</div><div class="feature-icon" aria-hidden="true">❋</div><h3>Diseño propio</h3><p>Piezas con carácter, combinaciones inesperadas y materiales que cuentan historias.</p></article><article class="feature reveal"><div class="num">02 / 03</div><div class="feature-icon" aria-hidden="true">✽</div><h3>Hecho a medida</h3><p>Cada mueble nace a partir de la vida, los gustos y el espacio de quien lo elige.</p></article><article class="feature reveal"><div class="num">03 / 03</div><div class="feature-icon" aria-hidden="true">✦</div><h3>Nueva vida</h3><p>Retapizados y restauraciones para resignificar piezas que ya amás.</p></article></div></div></section>
+<section class="section" id="coleccion"><div class="wrap"><div class="section-head"><div><span class="eyebrow">Materiales y sensaciones</span><h2>Habitar también es <em style="color:var(--accent)">sentir.</em></h2><p class="lead">Texturas, colores y objetos con intención. Una mirada libre al mobiliario y la decoración.</p></div><p class="smallnote">Imágenes conceptuales, no fotografías de piezas reales de Ohana.</p></div><div class="gallery"><figure class="filterable wide" data-category="todos"><img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1300&q=85" alt="Fotografía ilustrativa: El arte de combinar" loading="lazy" onerror="this.style.opacity='.17';this.style.filter='grayscale(1)'"><figcaption>El arte de combinar<small>Imagen ilustrativa · Propuesta de diseño</small></figcaption></figure><figure class="filterable wide" data-category="todos"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1300&q=85" alt="Fotografía ilustrativa: Rincones con carácter" loading="lazy" onerror="this.style.opacity='.17';this.style.filter='grayscale(1)'"><figcaption>Rincones con carácter<small>Imagen ilustrativa · Propuesta de diseño</small></figcaption></figure><figure class="filterable wide" data-category="todos"><img src="https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&w=1300&q=85" alt="Fotografía ilustrativa: Luz, textura y calma" loading="lazy" onerror="this.style.opacity='.17';this.style.filter='grayscale(1)'"><figcaption>Luz, textura y calma<small>Imagen ilustrativa · Propuesta de diseño</small></figcaption></figure></div></div></section><section class="section" id="proceso"><div class="wrap"><div class="split"><div class="split-image"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1300&q=85" alt="Ambiente bohemio ilustrativo" loading="lazy" onerror="this.style.opacity='.17';this.style.filter='grayscale(1)'"></div><div><span class="eyebrow">Tu espacio, tu historia</span><h2>No hay dos hogares iguales.</h2><p class="lead">Elegí una pieza, compartí una inspiración o contanos qué querés recuperar. El diseño a medida empieza con una conversación.</p><div class="pills"><span class="pill">Bohemian chic</span><span class="pill">Tapicería</span><span class="pill">Texturas</span><span class="pill">Restauración</span></div><a class="btn accent" href="#cotizar" style="margin-top:34px">Imaginar juntos ↗</a></div></div></div></section>
+<section class="section" id="contacto"><div class="wrap"><div class="split" style="gap:48px"><div><span class="eyebrow">Hablemos</span><h2>Lo mejor empieza con una <em style="color:var(--accent)">conversación.</em></h2><p class="lead">Completá los datos para preparar tu consulta. Vas a poder revisarla en WhatsApp antes de enviarla.</p><div class="pills"><span class="pill">Atención personalizada</span><span class="pill">Consulta sin compromiso</span></div><a href="https://wa.me/595992437835?text=Hola%2C%20quisiera%20consultar%20sobre%20OHANA." target="_blank" rel="noopener noreferrer" class="btn outline" style="margin-top:28px">WhatsApp directo ↗</a></div><div class="quote reveal" id="cotizar"><span class="eyebrow">Tu proyecto comienza acá</span><h3>Imaginemos tu espacio.</h3><p class="lead" style="font-size:15px;margin-bottom:27px">Una idea, una foto o una medida son suficientes para comenzar la conversación.</p><form id="leadForm"><div class="form-grid"><div class="field "><label for="project">undefined *</label><select id="project" name="Qué te gustaría hacer" required><option value="">Seleccioná una opción</option><option>Sofá o sillón a medida</option><option>Retapizar un mueble</option><option>Pieza decorativa</option><option>Mobiliario completo</option><option>Asesoramiento</option></select></div><div class="field "><label for="style">undefined *</label><select id="style" name="Estilo de preferencia" required><option value="">Seleccioná una opción</option><option>Bohemio y colorido</option><option>Natural y neutro</option><option>Ecléctico</option><option>Todavía no sé</option></select></div><div class="field "><label for="name">undefined *</label><input type="text" id="name" name="Tu nombre" required   placeholder=""></div><div class="field "><label for="space">undefined</label><input type="text" id="space" name="Espacio o medidas"    placeholder="Ej. Living de 3 × 4 m"></div><div class="field wide"><label for="notes">undefined</label><textarea id="notes" name="Contanos tu idea" placeholder="Texturas, colores, fotos para enviar luego…"></textarea></div></div><div class="quote-bottom"><p class="smallnote">Al continuar, se abrirá WhatsApp con tu consulta prearmada. No se guardan datos en este sitio de demostración.</p><button type="submit" class="btn accent">Conversar sobre mi idea ↗</button></div></form></div></div></div></section>
+<section class="closing"><div class="wrap reveal"><span class="eyebrow">¿Empezamos?</span><h2>Que tu próxima idea <span style="color:var(--accent)">tome forma.</span></h2><p class="lead">Estamos a un mensaje de conversar sobre lo que imaginás.</p><a class="btn accent" href="#cotizar" style="margin-top:24px">Empezar ahora ↗</a></div></section>
+</main><footer><div class="wrap"><div class="footer-grid"><div><a class="logo" href="#inicio" style="color:white">ohana</a><p style="font-size:13px;margin-top:14px">Diseño de mobiliario · Asunción</p></div><div class="footer-links"><a href="#inicio">Inicio</a><a href="#coleccion">Explorar</a><a href="#cotizar">Contacto</a></div></div><div class="footer-fine"><span>© 2026 · Concepto visual. No es la página oficial de OHANA.</span><span>Propuesta diseñada por <strong>NovaTec Engineering</strong> · Imágenes ilustrativas de Unsplash.</span></div></div></footer>
+<a class="float-wa" target="_blank" rel="noopener noreferrer" href="https://wa.me/595992437835?text=Hola%2C%20quisiera%20recibir%20m%C3%A1s%20informaci%C3%B3n." aria-label="Abrir WhatsApp">✆ <span>WhatsApp</span></a><div class="toast" role="status" id="toast">Consulta preparada.</div>
+</div><script>
+(()=>{
+const menu=document.querySelector('#menu'),toggle=document.querySelector('#menuToggle');
+toggle?.addEventListener('click',()=>{const open=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'✕':'☰';document.body.classList.toggle('nav-open',open)});
+document.querySelectorAll('#menu a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');document.body.classList.remove('nav-open');toggle?.setAttribute('aria-expanded','false');if(toggle)toggle.textContent='☰'}));
+const observer='IntersectionObserver'in window?new IntersectionObserver(items=>items.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');observer.unobserve(x.target)}}),{threshold:.12}):null;document.querySelectorAll('.reveal').forEach(x=>observer?observer.observe(x):x.classList.add('visible'));
+document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(b=>b.setAttribute('aria-pressed','false'));btn.setAttribute('aria-pressed','true');const val=btn.dataset.filter;document.querySelectorAll('.filterable').forEach(el=>{el.hidden=val!=='todos'&&el.dataset.category!==val})}));
+document.querySelectorAll('.select-service').forEach(btn=>btn.addEventListener('click',()=>{const sel=document.getElementById('treatment');if(sel)sel.value=btn.dataset.service;document.querySelector('#cotizar')?.scrollIntoView({behavior:'smooth'})}));
+document.querySelectorAll('input[type=date]').forEach(el=>el.min=new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,10));
+document.getElementById('leadForm')?.addEventListener('submit',ev=>{ev.preventDefault();const form=ev.currentTarget;if(!form.reportValidity())return;const values=[...new FormData(form).entries()].filter(([k,v])=>String(v).trim()).map(([k,v])=>k+': '+v).join('\n');const text='Hola, quisiera consultar en OHANA.\n\n'+values+'\n\n(Mensaje generado desde una propuesta de diseño no oficial de NovaTec.)';const url='https://wa.me/595992437835?text='+encodeURIComponent(text);const win=window.open(url,'_blank','noopener,noreferrer');if(!win){window.location.href=url}const toast=document.getElementById('toast');toast?.classList.add('show');setTimeout(()=>toast?.classList.remove('show'),2600)});
+})();
+ </script></body></html>
