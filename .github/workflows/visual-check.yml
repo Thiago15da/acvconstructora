@@ -1,0 +1,36 @@
+name: QA visual — Linares Mendoza
+
+on:
+  push:
+    paths:
+      - "index.html"
+      - "tests/visual-check.mjs"
+      - ".github/workflows/visual-check.yml"
+  workflow_dispatch:
+
+jobs:
+  visual-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install browser testing runtime
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Start local preview
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/linares-server.log 2>&1 &
+          sleep 2
+      - name: Test desktop, mobile and interactive flows
+        run: node tests/visual-check.mjs
+      - name: Save visual screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: linares-mendoza-desktop-mobile
+          path: test-results/
+          if-no-files-found: ignore
