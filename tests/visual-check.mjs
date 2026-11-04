@@ -19,9 +19,9 @@ await desktop.goto(site,{waitUntil:'domcontentloaded'});
 await desktop.waitForTimeout(3400);
 
 await run('Marca y portada personalizada',async()=>{
-  assert.match(await desktop.title(),/Linares Mendoza/);
+  assert.match(await desktop.title(),/Imperium Construcciones/);
   assert.match(await desktop.locator('h1').innerText(),/Construimos/);
-  assert.equal(await desktop.locator('a[href*="595975968600"]').count()>0,true);
+  assert.equal(await desktop.locator('a[href*="595983772501"]').count()>0,true);
   assert.equal(await desktop.locator('body').innerText().then(s=>s.includes('OHANA')),false);
   assert.equal(errors.length,0,errors.join('; '));
 });
@@ -43,7 +43,7 @@ await run('El formulario prepara consulta por WhatsApp',async()=>{
   await desktop.evaluate(()=>{window.__sent='';window.open=(url)=>{window.__sent=url;return {}}});
   await desktop.locator('#quoteForm button[type="submit"]').click();
   const url=await desktop.evaluate(()=>window.__sent);
-  assert.match(url,/wa\.me\/595975968600/);
+  assert.match(url,/wa\.me\/595983772501/);
   assert.match(decodeURIComponent(url),/Cliente de ensayo/);
   assert.match(decodeURIComponent(url),/Obra civil/);
 });
