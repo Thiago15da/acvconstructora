@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fcfbf7">
+<meta name="description" content="ConstruPy. Construcción modular en seco con termopaneles para viviendas, oficinas y proyectos comerciales e industriales en Paraguay.">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>ConstruPy — Construcción modular en seco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="quincho.webp">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#111717;--deep:#0b1113;--cream:#f5f3ee;--paper:#eae7df;--bronze:#bc925b;--gold:#d8ad74;--sub:#666e6b;--line:rgba(23,26,26,.13);--lightline:rgba(255,255,255,.2);--sans:'Manrope',sans-serif;--display:'Outfit',sans-serif;--serif:'Playfair Display',Georgia,serif}
+*,*:before,*:after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 15px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+body.menu-on{overflow:hidden}
+a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button{cursor:pointer}img{display:block;max-width:100%}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+::selection{background:var(--bronze);color:white}.skip{position:fixed;top:-100px;left:15px;background:white;color:var(--ink);padding:14px;z-index:1100}.skip:focus{top:10px}
+.container{width:min(1370px,calc(100% - 112px));margin:auto}
+.page{overflow:hidden}.eyebrow{font:700 10px/1.5 var(--sans);text-transform:uppercase;letter-spacing:.25em}
+.num{font:500 12px var(--display);letter-spacing:.05em;color:var(--bronze)}.muted{color:var(--sub)}
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:space-between;gap:42px;min-height:54px;padding:15px 19px;border:1px solid transparent;background:var(--bronze);color:var(--deep);font:800 11px/1.5 var(--sans);text-transform:uppercase;letter-spacing:.12em;transition:background .25s,color .25s,transform .25s}
+.btn:hover{background:#e5b979;transform:translateY(-2px)}.btn svg{width:18px;height:18px;flex:none}.btn-outline{background:transparent;color:white;border-color:#ffffff66}.btn-outline:hover{background:white;color:var(--deep)}.btn-dark{background:var(--deep);color:white}.btn-dark:hover{background:#30413e;color:white}
+#intro{position:fixed;inset:0;z-index:999;background:var(--deep);color:#fff;display:grid;place-items:center;overflow:hidden;animation:leave-intro 1s cubic-bezier(.83,0,.17,1) 2s both}
+#intro:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:#ffffff13}
+.intro-inner{z-index:1;text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px;animation:intro-in .9s ease both}
+.intro-mark{display:flex;gap:5px;height:63px;align-items:end}.intro-mark span{display:block;width:16px;background:linear-gradient(#efbf7b,#986b35)}.intro-mark span:nth-child(1){height:33px}.intro-mark span:nth-child(2){height:60px}.intro-mark span:nth-child(3){height:44px}
+.intro-name{font:500 15px/1.45 var(--display);letter-spacing:.34em}.intro-name small{display:block;font:600 9px var(--sans);letter-spacing:.58em;color:var(--gold);margin-top:7px}
+.intro-progress{width:200px;height:1px;background:#ffffff36;position:relative;overflow:hidden}.intro-progress:before{content:"";position:absolute;inset:0;background:var(--gold);transform-origin:left;animation:progress 1.7s cubic-bezier(.2,.7,.3,1) .2s both}
+@keyframes progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}@keyframes intro-in{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}@keyframes leave-intro{to{transform:translateY(-105%);visibility:hidden;pointer-events:none}}
+#nav{position:absolute;inset:0 0 auto;height:108px;z-index:50;display:flex;align-items:center;color:#fff;transition:background .3s,height .3s,border-color .3s}
+#nav.scrolled{position:fixed;height:82px;background:rgba(12,18,19,.96);backdrop-filter:blur(18px);border-bottom:1px solid #ffffff26}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:25px}
+.brand{display:flex;align-items:center;gap:13px;flex-shrink:0}.mark{display:flex;align-items:end;gap:3px;height:39px;position:relative;transform:skew(-8deg)}.mark i{display:block;width:10px;background:linear-gradient(145deg,#f0c486,#a07037);clip-path:polygon(0 16%,100% 0,100% 100%,0 100%)}.mark i:first-child{height:23px}.mark i:nth-child(2){height:37px}.mark i:last-child{height:29px}.brand-name{display:flex;flex-direction:column;font:700 15px/1.07 var(--display);letter-spacing:.14em}.brand-name strong{font-weight:500;letter-spacing:.28em;margin-top:3px}.brand-name small{font:600 8px var(--sans);letter-spacing:.34em;color:#d9bb93;margin-top:6px}
+.nav-items{display:flex;align-items:center;gap:34px}.nav-items>a:not(.nav-cta){font:700 10px var(--sans);text-transform:uppercase;letter-spacing:.14em;transition:color .2s}.nav-items>a:not(.nav-cta):hover{color:var(--gold)}
+.nav-cta{border:1px solid #d4b48d;font:700 10px var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:14px 19px;transition:.2s}.nav-cta:hover{background:var(--bronze);border-color:var(--bronze);color:var(--deep)}
+.menu-toggle{display:none;background:transparent;color:#fff;border:1px solid #ffffff55;padding:8px 11px;min-width:43px;min-height:43px}
+.hero{height:min(940px,100svh);min-height:700px;background:#141c1b;position:relative;color:white;isolation:isolate}
+.hero-photo{position:absolute;inset:0;z-index:-3;overflow:hidden}.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 50%;animation:hero-zoom 11s cubic-bezier(.2,.5,.2,1) both;filter:saturate(.65) contrast(1.07) brightness(.78)}
+.hero:after{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(5,13,15,.92) 0%,rgba(8,17,19,.71) 31%,rgba(8,17,18,.29) 72%,rgba(8,17,18,.24)),linear-gradient(0deg,rgba(8,15,16,.92),transparent 30%),linear-gradient(180deg,rgba(7,13,15,.5),transparent 20%)}
+.hero-gridlines{pointer-events:none;position:absolute;inset:0;z-index:-1;background-image:linear-gradient(90deg,transparent calc(25% - .5px),#ffffff20 25%,transparent calc(25% + .5px),transparent calc(75% - .5px),#ffffff17 75%,transparent calc(75% + .5px));opacity:.6}
+.hero-main{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-top:94px;padding-bottom:120px;position:relative}
+.hero-eyebrow{display:flex;align-items:center;gap:20px;color:#ebd4b1;opacity:0;animation:appear-up .9s ease 2.25s forwards}
+.hero-eyebrow .rule{width:39px;height:1px;background:var(--bronze)}
+.hero h1{font:500 clamp(70px,9vw,150px)/.92 var(--display);letter-spacing:-.068em;max-width:1080px;margin:31px 0 24px;text-wrap:balance;opacity:0;animation:appear-up 1.15s cubic-bezier(.16,1,.3,1) 2.35s forwards}
+.hero h1 em{font:italic 400 .92em/1.15 var(--serif);color:#dfb481;letter-spacing:-.07em}
+.hero-sub{max-width:520px;font-size:15px;line-height:1.9;color:#e1e2df;opacity:0;animation:appear-up .8s ease 2.55s forwards}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;opacity:0;animation:appear-up .8s ease 2.75s forwards}
+.hero-side{position:absolute;right:0;top:45%;display:flex;align-items:center;gap:12px;writing-mode:vertical-rl;transform:rotate(180deg);font:600 9px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#e8d5bf}.hero-side:before{content:"";width:1px;height:80px;background:var(--gold)}
+.hero-bottom{position:absolute;bottom:0;left:0;right:0;border-top:1px solid #ffffff44;z-index:2}
+.hero-bottom-inner{display:grid;grid-template-columns:1fr 1fr 1fr auto;align-items:stretch}
+.hero-stat{padding:21px 30px 21px 0;display:flex;gap:16px;align-items:center;border-right:1px solid #ffffff27}.hero-stat:not(:first-child){padding-left:27px}.hero-stat b{font:500 22px var(--display);color:var(--gold)}.hero-stat span{font:700 9px/1.5 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:#e6e6df}.scroll-cue{display:flex;gap:12px;align-items:center;padding-left:24px;font:700 9px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#d3d8d3}.scroll-cue svg{width:18px;height:18px;animation:updown 1.7s infinite}
+@keyframes appear-up{from{opacity:0;transform:translateY(42px)}to{opacity:1;transform:translateY(0)}}@keyframes hero-zoom{from{transform:scale(1.14)}to{transform:scale(1)}}@keyframes updown{50%{transform:translateY(6px)}}
+.overline{display:flex;align-items:center;gap:19px;color:var(--bronze)}.overline:after{content:"";height:1px;width:75px;background:currentColor;opacity:.55}
+h2,h3,p{margin-top:0}
+.heading{font:500 clamp(43px,5.7vw,88px)/1.06 var(--display);letter-spacing:-.062em}
+.heading em{font:italic 400 1em/1.1 var(--serif);letter-spacing:-.065em;color:#a87943}
+.section{padding:140px 0}.section-top{display:flex;justify-content:space-between;gap:45px;align-items:end;margin-bottom:55px}.section-top .heading{margin:23px 0 0}.section-top .caption{max-width:350px;margin-bottom:8px;font-size:14px;color:var(--sub)}
+.editorial{display:grid;grid-template-columns:1fr 1.03fr;gap:clamp(50px,10vw,165px);align-items:center}
+.editorial .heading{margin:27px 0 25px}.editorial p:not(.eyebrow){font-size:15px;line-height:1.95;color:var(--sub);max-width:520px}
+.editorial p strong{color:var(--ink)}.eyeline{display:flex;align-items:center;gap:15px;margin:35px 0;font:700 10px var(--sans);letter-spacing:.17em;text-transform:uppercase}.eyeline:before{content:"";height:1px;width:44px;background:var(--bronze)}
+.picture-composition{position:relative;min-height:690px;padding-left:40px;padding-bottom:68px}
+.picture-composition:before{content:"";position:absolute;top:-31px;left:0;width:72%;height:87%;border:1px solid #b18c5f66;pointer-events:none}
+.picture-main{height:617px;position:relative;overflow:hidden;background:#c2bbb0}.picture-main img{height:100%;width:100%;object-fit:cover}
+.picture-inset{position:absolute;right:-50px;bottom:0;width:46%;height:270px;border:9px solid var(--cream);overflow:hidden;background:#aaa}.picture-inset img{width:100%;height:100%;object-fit:cover}
+.picture-note{position:absolute;left:58px;bottom:27px;z-index:2;transform:rotate(-90deg);transform-origin:left bottom;font:700 9px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#fff}
+.signature{display:flex;gap:10px;align-items:center;margin-top:33px;font:700 10px var(--sans);letter-spacing:.17em;text-transform:uppercase}.signature:before{content:"✳";font-size:23px;color:var(--bronze)}
+.service-block{background:#111a1a;color:var(--cream);position:relative;overflow:hidden}
+.service-block:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#fff1 1px,transparent 1px),linear-gradient(90deg,#fff1 1px,transparent 1px);background-size:86px 86px;opacity:.16;mask-image:linear-gradient(to right,transparent 5%,black)}
+.service-block .section-top{position:relative}.service-block .section-top .caption{color:#a5aaa6}.service-block .heading em{color:#d2ad79}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#ffffff2b;border:1px solid #ffffff2b;position:relative}
+.service-card{background:#111a1a;padding:47px 37px 46px;min-height:465px;display:flex;flex-direction:column;transition:background .25s}
+.service-card:hover{background:#1b2927}.service-card .top{display:flex;justify-content:space-between;align-items:center}.service-card .top span{font:700 11px var(--display);color:var(--gold)}.service-card .top svg{width:26px;height:26px;color:var(--gold);transition:transform .2s}.service-card:hover .top svg{transform:translate(4px,-4px)}
+.service-icon{height:136px;display:flex;align-items:center;margin:22px 0}.service-icon svg{width:100%;max-width:190px;height:110px;stroke:#c19a67;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;opacity:.75}
+.service-card h3{font:500 30px/1.1 var(--display);letter-spacing:-.05em;margin:0 0 16px}.service-card p{font:400 13px/1.8 var(--sans);color:#aeb4b1;max-width:300px;margin:0}.service-card .accent-line{height:1px;background:#ffffff26;margin:26px 0 0;position:relative}.service-card .accent-line:before{content:"";position:absolute;width:38px;height:1px;left:0;background:var(--gold)}
+.service-footer{display:flex;justify-content:space-between;align-items:center;gap:24px;color:#abb1ad;padding-top:23px;font:700 10px var(--sans);letter-spacing:.12em;text-transform:uppercase;position:relative}
+.service-footer a{color:var(--gold);border-bottom:1px solid #c8a16f;padding-bottom:4px}
+.portfolio{background:#e9e7e0}
+.portfolio .section-top{align-items:end}
+.portfolio-showcase{display:grid;grid-template-columns:1.3fr .7fr;min-height:660px;background:var(--deep);color:#fff}
+.portfolio-photo{position:relative;min-height:660px;overflow:hidden}.portfolio-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .4s,transform 1.2s;transform:scale(1.015)}.portfolio-photo.changing img{opacity:.15;transform:scale(1.05)}
+.portfolio-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 40%,#0b111355)}
+.photo-tag{position:absolute;bottom:24px;left:26px;z-index:2;padding:10px 15px;background:#081010a8;color:#eee4d9;border:1px solid #ffffff44;font:700 9px var(--sans);letter-spacing:.12em;text-transform:uppercase}
+.portfolio-content{padding:70px clamp(35px,4vw,75px);display:flex;flex-direction:column;justify-content:space-between;position:relative}
+.portfolio-content .index{font:500 135px/1 var(--display);letter-spacing:-.08em;color:#ffffff10;position:absolute;right:28px;top:18px;pointer-events:none}
+.portfolio-content h3{font:500 clamp(38px,3.8vw,59px)/1.1 var(--display);letter-spacing:-.06em;position:relative;margin:29px 0 20px}
+.portfolio-content p{color:#adb8b3;font-size:14px;line-height:1.9;position:relative}
+.portfolio-tabs{display:flex;flex-direction:column;position:relative;margin-top:80px}
+.portfolio-tab{display:grid;grid-template-columns:36px 1fr 18px;gap:10px;align-items:center;text-align:left;width:100%;padding:17px 0;border:0;border-top:1px solid #ffffff3a;background:transparent;color:#aab4b0;font:600 13px var(--sans);transition:color .2s}
+.portfolio-tab:last-child{border-bottom:1px solid #ffffff3a}
+.portfolio-tab[aria-selected=true],.portfolio-tab:hover{color:var(--gold)}.portfolio-tab span:first-child{font-size:10px}.portfolio-tab svg{width:16px}
+.portfolio-note{font:500 11px/1.75 var(--sans)!important;color:#e1d1bb!important;margin:32px 0 0}
+.process{background:var(--cream)}.process-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #bdb8ac;border-bottom:1px solid #bdb8ac;margin-top:60px}
+.process-step{padding:40px 28px 41px 0;position:relative}.process-step:not(:first-child){padding-left:28px;border-left:1px solid #d2cec5}.process-step span{display:block;font:500 65px/.95 var(--display);letter-spacing:-.08em;color:#b29b7c}.process-step h3{font:600 20px var(--display);letter-spacing:-.03em;margin:62px 0 13px}.process-step p{font-size:12px;line-height:1.85;color:var(--sub);margin:0}
+.process-line{height:1px;background:#c7b393;position:relative;margin-top:24px}.process-line:before{content:"";position:absolute;left:0;top:-4px;height:9px;width:9px;border-radius:50%;background:var(--bronze)}
+.impact{background:var(--deep);color:var(--cream);overflow:hidden;position:relative}
+.impact:before{content:"CP";position:absolute;right:-3%;bottom:-18%;font:600 min(35vw,560px)/1 var(--display);letter-spacing:-.15em;color:#ffffff06;pointer-events:none}
+.impact-inner{display:grid;grid-template-columns:1fr .9fr;align-items:center;gap:12%;position:relative}
+.impact .heading{font-size:clamp(43px,5.5vw,80px)}.impact .heading em{color:var(--gold)}
+.impact p{max-width:530px;font-size:14px;line-height:1.95;color:#abb6b1}.impact-link{display:inline-flex;align-items:center;gap:14px;margin-top:20px;font:700 10px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid #a7865a;padding-bottom:11px}
+.impact-visual{min-height:400px;display:grid;place-items:center;border:1px solid #ffffff3a;position:relative;overflow:hidden}
+.impact-visual:before,.impact-visual:after{content:"";position:absolute;left:50%;top:50%;border:1px solid #bc925b70;transform:translate(-50%,-50%) rotate(45deg)}.impact-visual:before{width:265px;height:265px}.impact-visual:after{width:180px;height:180px}
+.impact-symbol{font:500 100px/1 var(--display);letter-spacing:-.09em;color:var(--gold);position:relative;z-index:1}
+.impact-label{position:absolute;bottom:25px;left:25px;color:#bfc4bd;font:600 9px var(--sans);letter-spacing:.18em;text-transform:uppercase}
+.contact{background:var(--paper);padding:130px 0}
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:9%;align-items:start}
+.contact .heading{margin:25px 0}.contact p{font-size:14px;color:var(--sub);line-height:1.9;max-width:440px}
+.contact-phone{margin-top:50px;border-top:1px solid #cbc3b7;padding-top:24px}
+.contact-phone span{display:block;color:#767469;font:700 10px var(--sans);letter-spacing:.16em;text-transform:uppercase;margin-bottom:5px}
+.contact-phone a{font:500 27px var(--display);letter-spacing:-.02em}.contact-phone a:hover{color:#9d7240}
+.quote{background:#fff;padding:58px 57px;box-shadow:0 25px 80px #151a1420;position:relative}
+.quote:before{content:"";position:absolute;top:0;left:0;width:90px;height:3px;background:var(--bronze)}
+.quote-title{font:600 28px/1.2 var(--display);letter-spacing:-.04em;margin:18px 0 32px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px 18px}.field{display:flex;flex-direction:column;gap:9px}.field.full{grid-column:1/-1}
+.field label{font:800 10px var(--sans);letter-spacing:.1em;text-transform:uppercase}.field input,.field select,.field textarea{min-height:51px;width:100%;padding:13px 14px;background:#f6f5f1;border:1px solid #d9d7d0;color:#212722;outline:none;border-radius:0;transition:border-color .2s}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--bronze)}.field textarea{resize:vertical;min-height:120px}.form-end{display:flex;align-items:center;gap:22px;margin-top:24px}.form-end .btn{flex-shrink:0}.form-end small{font:500 11px/1.6 var(--sans);color:#777b72}
+.endcap{position:relative;min-height:395px;background:#171e1d;display:flex;align-items:center;overflow:hidden;color:#fff}
+.endcap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.2;filter:grayscale(1)}.endcap:before{content:"";inset:0;position:absolute;background:linear-gradient(90deg,#0f1717 7%,transparent 95%);z-index:1}
+.endcap .container{position:relative;z-index:2;display:flex;align-items:end;justify-content:space-between;gap:30px}.endcap h2{font:500 clamp(43px,6vw,90px)/1.06 var(--display);letter-spacing:-.06em;max-width:850px;margin:20px 0 0}.endcap h2 em{font-family:var(--serif);font-weight:400;color:#e1b881}.endcap .btn{margin-bottom:12px;white-space:nowrap}
+footer{background:#0b1113;color:#e2e2dc;padding:58px 0 27px}
+.footer-main{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:30px;padding-bottom:60px}
+footer p{color:#adb1ac;font-size:12px;line-height:1.9;max-width:290px;margin:26px 0 0}
+.footer-col h4{font:700 10px var(--sans);letter-spacing:.17em;text-transform:uppercase;color:#d1a773;margin:0 0 25px}
+.footer-col a{display:block;font-size:12px;color:#d0d2cc;margin:12px 0}.footer-col a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid #ffffff26;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:23px;color:#979f9a;font-size:10px;letter-spacing:.04em}
+.fixed-wa{position:fixed;right:26px;bottom:25px;z-index:55;display:flex;align-items:center;gap:11px;background:var(--bronze);color:#121818;box-shadow:0 8px 35px #0004;padding:13px 17px;font:800 10px var(--sans);letter-spacing:.1em;text-transform:uppercase;transition:.2s}.fixed-wa:hover{transform:translateY(-3px);background:#e7be82}.fixed-wa svg{width:18px;height:18px}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+@media(max-width:1100px){.container{width:calc(100% - 72px)}.hero h1{font-size:clamp(64px,8vw,100px)}.nav-items{gap:20px}.editorial{gap:70px}.picture-composition{min-height:540px}.picture-main{height:510px}.picture-inset{right:-20px;height:200px}.service-card{padding:35px 25px}.service-card h3{font-size:25px}.portfolio-showcase{grid-template-columns:1.1fr .9fr}.contact-grid{gap:5%}.quote{padding:45px 37px}}
+@media(max-width:800px){.container{width:calc(100% - 42px)}#nav{height:80px}#nav.scrolled{height:70px}.menu-toggle{display:block;position:relative;z-index:53}.nav-items{display:none;position:fixed;inset:0;min-height:100dvh;background:#0b1113;flex-direction:column;align-items:center;justify-content:center;gap:30px;z-index:52}.nav-items.open{display:flex}.nav-items>a:not(.nav-cta){font-size:16px}.hero{min-height:720px;height:100svh}.hero-main{padding-top:45px;padding-bottom:120px}.hero h1{font-size:clamp(55px,9.3vw,85px)}.hero-side{display:none}.hero-bottom-inner{grid-template-columns:repeat(3,1fr)}.hero-stat{padding:18px 10px!important;gap:8px}.hero-stat b{font-size:19px}.hero-stat span{font-size:8px}.scroll-cue{display:none}.section{padding:88px 0}.editorial{grid-template-columns:1fr;gap:50px}.picture-composition{max-width:650px}.section-top{display:block}.section-top .caption{margin-top:24px}.services{grid-template-columns:1fr}.service-card{min-height:auto;padding:28px 32px}.service-icon{height:100px;margin:6px 0}.service-card h3{font-size:30px}.portfolio-showcase{grid-template-columns:1fr}.portfolio-photo{min-height:470px}.portfolio-content{min-height:470px;padding:37px 30px}.portfolio-tabs{margin-top:35px}.process-grid{grid-template-columns:repeat(2,1fr)}.process-step:nth-child(3){border-left:0;border-top:1px solid #d2cec5}.process-step:nth-child(4){border-top:1px solid #d2cec5}.process-step h3{margin-top:33px}.impact-inner,.contact-grid{grid-template-columns:1fr;gap:55px}.impact-visual{min-height:310px}.endcap .container{align-items:start;flex-direction:column}.footer-main{grid-template-columns:1fr 1fr}.footer-main>div:first-child{grid-column:1/-1}}
+@media(max-width:500px){.container{width:calc(100% - 36px)}.brand-name{font-size:12px}.brand-name strong{letter-spacing:.23em}.mark{height:32px}.mark i:nth-child(2){height:32px}.hero{min-height:695px}.hero-main{padding-top:55px}.hero h1{font-size:clamp(54px,13.1vw,76px);line-height:1.01;letter-spacing:-.07em}.hero-sub{font-size:13px}.hero-actions{width:100%}.hero-actions .btn{justify-content:center;gap:18px;min-height:50px;font-size:10px}.hero-eyebrow{font-size:9px}.hero-stat{padding:12px 5px!important;display:flex;flex-direction:column;align-items:flex-start;gap:1px}.hero-stat span{font-size:7px}.hero-photo img{object-position:58% center}.section{padding:74px 0}.heading{font-size:clamp(43px,11vw,64px)}.picture-composition{padding-left:18px;padding-bottom:35px;min-height:420px}.picture-main{height:410px}.picture-inset{width:45%;height:160px;right:-6px;border-width:5px}.picture-note{left:27px}.section-top{margin-bottom:30px}.portfolio-photo{min-height:340px}.portfolio-content{min-height:470px}.process-grid{grid-template-columns:1fr}.process-step{border-left:0!important;border-top:1px solid #d2cec5!important;padding:25px 0}.process-step:first-child{border-top:0!important}.process-step h3{margin:18px 0 9px}.process-step span{font-size:55px}.impact-visual{min-height:260px}.impact-symbol{font-size:75px}.impact-visual:before{width:200px;height:200px}.impact-visual:after{width:140px;height:140px}.contact{padding:80px 0}.quote{padding:40px 20px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.form-end{flex-direction:column;align-items:stretch}.form-end .btn{justify-content:center}.endcap{min-height:450px}.endcap h2{font-size:52px}.endcap .btn{margin:0}.footer-main{grid-template-columns:1fr}.footer-main>div:first-child{grid-column:auto}.fixed-wa{right:13px;bottom:13px;padding:12px}.fixed-wa span{display:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;animation-delay:0ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}#intro{display:none!important}.hero-eyebrow,.hero h1,.hero-sub,.hero-actions{opacity:1!important}}
+/* Paleta clara de la composición original. */
+:root{--ink:#242b2d;--deep:#242b2d;--cream:#fcfbf7;--paper:#f2efe6;--bronze:#a87b1b;--gold:#87651c;--sub:#626b6b;--line:#d9d9cf;--lightline:#d8d9d0}
+::selection{background:#f4cf56;color:#242b2d}
+#intro{background:var(--cream);color:var(--ink)}
+#intro:after{background:#242b2d12}.intro-progress{background:#ded8c8}
+.intro-name small{color:var(--gold)}
+.brand-logo{width:186px;height:auto;mix-blend-mode:multiply}
+#intro .brand-logo{width:235px}
+#nav{color:var(--ink);background:#fcfbf7e8;border-bottom:1px solid #b8b5a640}
+#nav.scrolled{background:#fcfbf7f7;border-color:var(--line)}
+.nav-items>a:not(.nav-cta):hover{color:#85620c}
+.nav-cta{border-color:#9d8b55}.nav-cta:hover{background:#f8cd38;border-color:#f8cd38;color:#242b2d}
+.menu-toggle{color:var(--ink);border-color:#afa98d}
+.btn{background:#f8cc35;color:#242b2d}
+.btn:hover,.fixed-wa:hover{background:#ffdc63;color:#242b2d}
+.btn-outline{background:#fcfbf740;color:var(--ink);border-color:#72796c}
+.btn-outline:hover{background:#fff;color:var(--ink)}
+.btn-dark{background:#293431;color:white}.btn-dark:hover{background:#41504b;color:#fff}
+.hero{background:#f7f5ec;color:var(--ink)}
+.hero-photo img{filter:saturate(.75) contrast(.96) brightness(1.06)}
+.hero:after{background:linear-gradient(90deg,#fcfbf7f7 0%,#fcfbf7eb 30%,#fcfbf7b8 50%,#fcfbf72b 80%),linear-gradient(0deg,#fcfbf7ef,transparent 27%)}
+.hero-gridlines{background-image:linear-gradient(90deg,transparent calc(25% - .5px),#252c2914 25%,transparent calc(25% + .5px),transparent calc(75% - .5px),#252c290d 75%,transparent calc(75% + .5px))}
+.hero-eyebrow,.hero h1 em,.hero-side{color:#745815}
+.hero-sub{color:#43514d}.hero-bottom{border-color:#78775a55;background:#fcfbf7c4;backdrop-filter:blur(8px)}
+.hero-stat{border-color:#979b8f4d}.hero-stat b{color:#85651c}.hero-stat span,.scroll-cue{color:#3f4d47}
+.heading em{color:#8b6923}.service-block{background:#f2f0e7;color:var(--ink)}.service-block:before{opacity:.18;background-image:linear-gradient(#5f6a551a 1px,transparent 1px),linear-gradient(90deg,#5f6a551a 1px,transparent 1px)}
+.service-block .section-top .caption{color:var(--sub)}.service-block .heading em{color:#8b6923}
+.services{background:#d8d7ca;border-color:#d8d7ca}
+.service-card{background:#fcfbf7}.service-card:hover{background:#fff7dc}
+.service-card .top span,.service-card .top svg{color:#806119}
+.service-icon svg{stroke:#92701e;opacity:.85}.service-card p,.service-footer{color:var(--sub)}
+.service-card .accent-line{background:#dedbce}.service-footer a{color:#7b5e16;border-color:#ad8b34}
+.portfolio{background:#f8f7f1}.portfolio-showcase{background:#eeece2;color:var(--ink)}
+.portfolio-content .index{color:#343e3010}.portfolio-content p{color:#626d66}
+.portfolio-tab{color:#535f57;border-color:#acb3a044}.portfolio-tab:last-child{border-color:#acb3a044}
+.portfolio-tab[aria-selected=true],.portfolio-tab:hover{color:#806119}
+.portfolio-note{color:#7d6a3d!important}
+.process-step span{color:#a68a46}
+.impact{background:#f0ede2;color:var(--ink)}.impact:before{content:"CP";color:#5d6b5210}
+.impact .heading em{color:#8b6923}.impact p{color:#5b6860}.impact-link{color:#7b5e16}
+.impact-visual{border-color:#b5b89f}.impact-visual:before,.impact-visual:after{border-color:#aa8a353d}
+.impact-visual .brand-logo{width:65%;max-width:300px;z-index:1}.impact-label{color:#5e685a}
+.contact-details{display:grid;gap:14px;margin-top:26px}
+.contact-details a{font-size:13px;color:#4e5d50;overflow-wrap:anywhere}
+.endcap{background:#f4f1e8;color:var(--ink)}.endcap img{opacity:.23;filter:saturate(.6)}
+.endcap:before{background:linear-gradient(90deg,#fcfbf7 7%,#fcfbf799 55%,#fcfbf72b 95%)}
+.endcap h2 em{color:#8b6923}
+footer{background:#f5f3eb;color:var(--ink)}footer p{color:#647064}
+.footer-col h4{color:#806119}.footer-col a{color:#47574d}.footer-col a:hover{color:#87651c}
+.footer-bottom{border-color:#b2b8a744;color:#667063}
+.fixed-wa{background:#f8cc35;color:#242b2d;box-shadow:0 6px 25px #373a251f}
+@media(max-width:800px){.nav-items{background:#fcfbf7}.brand-logo{width:165px}}
+@media(max-width:500px){.brand-logo{width:145px}.hero-photo img{object-position:63% center}.hero:after{background:linear-gradient(90deg,#fcfbf7ed,#fcfbf7c9 65%,#fcfbf77a),linear-gradient(0deg,#fcfbf7,transparent 40%)}.hero h1{font-size:clamp(49px,12vw,66px)}.hero-main{padding-top:90px;padding-bottom:130px}.hero-actions .btn{gap:12px;font-size:9px;padding:13px}.contact-details a{font-size:12px}}
+
+/* ConstruPy */
+:root{--ink:#302923;--deep:#342820;--cream:#fcfaf5;--paper:#f3eee5;--bronze:#956a43;--gold:#855c38;--sub:#5c5851}
+.brand-logo{display:inline-grid;width:auto;mix-blend-mode:normal;color:#4f361f;font:650 34px/.9 var(--display);letter-spacing:-.045em;white-space:nowrap}
+.brand-logo b{color:#946636;font-weight:700}
+.brand-logo small{display:block;color:#685544;font:750 8px/1 var(--sans);letter-spacing:.22em;margin-top:8px}
+#intro .brand-logo,.impact-visual .brand-logo{width:auto;font-size:clamp(48px,6vw,88px)}
+#intro .brand-logo small,.impact-visual .brand-logo small{font-size:10px;margin-top:12px}
+.btn,.fixed-wa,.nav-cta:hover{background:#d4a66e;color:#251d15}
+.nav-cta{background:transparent}
+.btn:hover,.fixed-wa:hover{background:#e6bb85;color:#251d15}
+.btn-outline{background:#fcfaf558;color:var(--ink)}
+.btn-dark{background:#3b2d23;color:white}
+.btn-dark:hover{background:#584130;color:#fff}
+.hero-photo img{object-position:60% 51%;filter:saturate(.87) contrast(.99)}
+.hero:after{background:linear-gradient(90deg,#fcfaf5fa 0%,#fcfaf5e9 28%,#fcfaf5b5 49%,#fcfaf520 77%),linear-gradient(0deg,#fcfaf5ee,transparent 27%)}
+.hero-eyebrow,.hero h1 em,.hero-side,.heading em,.service-block .heading em,.impact .heading em,.endcap h2 em{color:#815836}
+.hero h1{font-size:clamp(52px,8.1vw,126px)}
+.hero h1 em{white-space:nowrap}
+.hero-bottom{background:#faf5eacb}
+.hero-bottom .hero-stat span{font-size:10px}
+.service-card:hover{background:#fcf1e3}
+.service-block,.portfolio-showcase{background:#f2ede3}
+.portfolio-note a{text-decoration:underline;text-underline-offset:3px}
+.quote-preview{margin-top:20px;padding-top:14px;border-top:1px solid var(--line)}
+.quote-preview h4{margin:0 0 9px}
+.quote-preview p{white-space:pre-wrap;overflow-wrap:anywhere;max-width:none}
+#vision,#servicios,#proceso,#nosotros,#contacto{scroll-margin-top:75px}
+@media(max-width:800px){.brand-logo{font-size:28px}.hero h1{font-size:clamp(51px,9vw,92px)}}
+@media(max-width:500px){.hero h1{font-size:clamp(47px,12vw,61px)}.hero-photo img{object-position:58% center}.hero:after{background:linear-gradient(90deg,#fcfaf5ee,#fcfaf5d4 56%,#fcfaf583),linear-gradient(0deg,#fcfaf5,transparent 41%)}.hero-bottom .hero-stat span{font-size:8px}.impact-visual .brand-logo{font-size:45px}.field input,.field select,.field textarea{font-size:16px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Ir al contenido</a>
+<div id="intro" aria-hidden="true"><div class="intro-inner"><span class="brand-logo" aria-label="ConstruPy"><span>Constru<b>Py</b></span><small>SISTEMAS MODULARES</small></span><div class="intro-progress"></div></div></div>
+<div class="page">
+<header id="nav">
+ <nav class="container nav-inner" aria-label="Navegación principal">
+  <a class="brand" href="#inicio" aria-label="ConstruPy, inicio"><span class="brand-logo" aria-label="ConstruPy"><span>Constru<b>Py</b></span><small>SISTEMAS MODULARES</small></span></a>
+  <div class="nav-items" id="navItems">
+   <a href="#nosotros">Nosotros</a><a href="#servicios">Especialidades</a><a href="#vision">Obras</a><a href="#proceso">El proceso</a><a href="#contacto" class="nav-cta">Hablemos de tu obra ↗</a>
+  </div>
+  <button id="menuToggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="navItems" aria-label="Abrir menú">☰</button>
+ </nav>
+</header>
+<main id="contenido">
+<section class="hero" id="inicio" aria-label="Presentación de ConstruPy">
+ <div class="hero-photo"><img src="quincho.webp" alt="Quincho con estructura metálica y cubierta de termopaneles publicado por TermoIndustrial" fetchpriority="high"></div>
+ <div class="hero-gridlines"></div>
+ <div class="container hero-main">
+  <span class="hero-eyebrow eyebrow"><span class="rule"></span> ConstruPy · Paraguay</span>
+  <h1>Construcción<br>modular <em>en seco.</em></h1>
+  <p class="hero-sub">Viviendas, oficinas y espacios industriales con termopaneles. Contanos qué querés construir y vemos qué sistema se adapta a tu proyecto.</p>
+  <div class="hero-actions"><a class="btn" href="#contacto">Hablemos de tu proyecto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a href="#vision" class="btn btn-outline">Ver obras de referencia <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a></div>
+  <div class="hero-side">Paraguay · Sistemas modulares</div>
+ </div>
+ <div class="hero-bottom"><div class="container hero-bottom-inner"><div class="hero-stat"><span>Viviendas y oficinas</span></div><div class="hero-stat"><span>Quinchos y tinglados</span></div><div class="hero-stat"><span>Espacios técnicos</span></div><a class="scroll-cue" href="#nosotros">Explorá <svg viewBox="0 0 24 24" stroke="currentColor" fill="none"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a></div></div>
+</section>
+<section class="section" id="nosotros">
+ <div class="container editorial">
+  <div class="reveal">
+    <span class="eyebrow overline">El sistema</span>
+    <h2 class="heading">Termopaneles para <em>cada proyecto.</em></h2>
+    <p>La construcción en seco combina una estructura con paneles para paredes y cubiertas. Cada proyecto se define según el uso del espacio y las condiciones del terreno.</p>
+    <p><strong>ConstruPy</strong> es la línea de construcción de TermoIndustrial. Su sistema modular se aplica en viviendas, oficinas, quinchos y espacios que requieren condiciones específicas, como cámaras de frío y salas blancas.</p>
+    <div class="eyeline">Estructura · Cerramientos · Cubierta</div>
+    <a href="#servicios" class="btn btn-dark">Conocé nuestras especialidades <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+  </div>
+  <div class="picture-composition reveal">
+   <div class="picture-main"><img src="gallo.webp" loading="lazy" alt="Exterior de las oficinas Gallo S.R.L. publicadas por TermoIndustrial"></div>
+   <div class="picture-inset"><img src="full-store.webp" loading="lazy" alt="Exterior de las oficinas Full Store publicadas por TermoIndustrial"></div>
+   <span class="picture-note">Fotografías · TermoIndustrial</span>
+  </div>
+ </div>
+</section>
+<section class="section service-block" id="servicios">
+ <div class="container">
+  <div class="section-top reveal"><div><span class="eyebrow overline">Especialidades</span><h2 class="heading">Soluciones para<br>distintos <em>espacios.</em></h2></div><p class="caption">Elegí el tipo de espacio que necesitás y consultá por el alcance, los materiales y el montaje.</p></div>
+  <div class="services">
+   <article class="service-card reveal"><div class="top"><span>VIVIENDA Y COMERCIO</span><svg viewBox="0 0 24 24" stroke="currentColor" fill="none"><path d="M5 19 19 5M7 5h12v12"/></svg></div><div class="service-icon"><svg viewBox="0 0 200 115"><path d="M14 97h175M25 96V47l71-36 71 36v49M56 96V56h80v40M82 56V26M110 56V28M25 47h142M56 75h80M25 63h31m80 0h31" /><path d="M1 102h190M11 36l85-35 85 35" stroke-dasharray="4 6"/></svg></div><h3>Viviendas<br>y oficinas</h3><p>Construcción modular para viviendas, oficinas administrativas y espacios de trabajo.</p><div class="accent-line"></div></article>
+   <article class="service-card reveal"><div class="top"><span>CUBIERTAS Y ESTRUCTURAS</span><svg viewBox="0 0 24 24" stroke="currentColor" fill="none"><path d="M5 19 19 5M7 5h12v12"/></svg></div><div class="service-icon"><svg viewBox="0 0 200 115"><path d="M16 100h171M28 100V47h128v53M28 47h128M47 47V25h24v22M113 47V25h24v22M38 62h108M38 80h108M53 100V80m24 20V80m24 20V80m24 20V80M20 25h157M174 13v87M162 24h25" /><path d="M8 106h184M153 9h32" stroke-dasharray="5 7"/></svg></div><h3>Quinchos<br>y tinglados</h3><p>Estructuras y cubiertas con termopaneles para patios, galpones y espacios de uso comercial.</p><div class="accent-line"></div></article>
+   <article class="service-card reveal"><div class="top"><span>PROYECTOS TÉCNICOS</span><svg viewBox="0 0 24 24" stroke="currentColor" fill="none"><path d="M5 19 19 5M7 5h12v12"/></svg></div><div class="service-icon"><svg viewBox="0 0 200 115"><path d="M20 98h165M33 98V21h134v77M33 21h134M49 40h101M49 58h101M49 77h101M72 40v58m53-58v58M20 20l15-9h130l15 9M20 107h165" /><circle cx="99" cy="90" r="7"/><path d="m94 90 4 4 7-9" /></svg></div><h3>Cámaras de frío<br>y salas blancas</h3><p>Cerramientos en termopaneles para ambientes con requisitos de temperatura, higiene y operación.</p><div class="accent-line"></div></article>
+  </div>
+  <div class="service-footer"><span>Consulta por medidas, cerramientos y cubierta.</span><a href="#contacto">Conversemos sobre el tuyo ↗</a></div>
+ </div>
+</section>
+<section class="section portfolio" id="vision">
+ <div class="container">
+  <div class="section-top reveal"><div><span class="eyebrow overline">Galería de obras</span><h2 class="heading">Construcción en seco<br><em>en la práctica.</em></h2></div><p class="caption">Tres proyectos publicados por TermoIndustrial que muestran aplicaciones de termopaneles en oficinas y cubiertas.</p></div>
+  <div class="portfolio-showcase reveal">
+   <div class="portfolio-photo" id="visionPhoto"><img id="visionImage" src="full-store.webp" alt="Exterior de las oficinas Full Store" loading="lazy"><div class="photo-tag">Obras publicadas · TermoIndustrial</div></div>
+   <div class="portfolio-content"><div><span class="eyebrow" style="color:var(--gold)">Construcción modular</span><div class="index" id="visionNum">01</div><h3 id="visionTitle">Oficinas<br>Full Store</h3><p id="visionText">Oficinas de uso múltiple y sala de reuniones. 32 m² con estructura metálica, paredes y cubierta de termopaneles.</p></div>
+    <div><div class="portfolio-tabs" role="tablist" aria-label="Obras publicadas">
+     <button class="portfolio-tab" data-vision="0" type="button" role="tab" aria-selected="true"><span>01</span><span>Oficinas Full Store</span><svg viewBox="0 0 24 24" stroke="currentColor" fill="none"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+     <button class="portfolio-tab" data-vision="1" type="button" role="tab" aria-selected="false"><span>02</span><span>Cubierta para quincho</span><svg viewBox="0 0 24 24" stroke="currentColor" fill="none"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+     <button class="portfolio-tab" data-vision="2" type="button" role="tab" aria-selected="false"><span>03</span><span>Oficinas Gallo S.R.L.</span><svg viewBox="0 0 24 24" stroke="currentColor" fill="none"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+    </div><p class="portfolio-note"><a href="https://termoindustrial.com/termoweb/obras/" target="_blank" rel="noopener noreferrer">Ver las fichas originales en TermoIndustrial ↗</a></p></div>
+   </div>
+  </div>
+ </div>
+</section>
+<section class="section process" id="proceso">
+ <div class="container">
+  <div class="section-top reveal"><div><span class="eyebrow overline">De la consulta al montaje</span><h2 class="heading">Cómo iniciar<br><em>tu proyecto.</em></h2></div><p class="caption">Compartí el uso, la ubicación y las dimensiones aproximadas para evaluar el alcance con el equipo.</p></div>
+  <div class="process-grid">
+   <div class="process-step reveal"><span>01</span><div class="process-line"></div><h3>Escuchamos</h3><p>Compartí qué querés construir, dónde y para qué se va a usar el espacio.</p></div>
+   <div class="process-step reveal"><span>02</span><div class="process-line"></div><h3>Planificamos</h3><p>Se revisan medidas, posibles materiales y condiciones del terreno o del local existente.</p></div>
+   <div class="process-step reveal"><span>03</span><div class="process-line"></div><h3>Construimos</h3><p>La obra se coordina según el alcance acordado, desde la estructura hasta el montaje de los paneles.</p></div>
+   <div class="process-step reveal"><span>04</span><div class="process-line"></div><h3>Cuidamos los detalles</h3><p>Se revisan los encuentros, las aberturas y los acabados que forman parte del proyecto.</p></div>
+  </div>
+ </div>
+</section>
+<section class="section impact">
+ <div class="container impact-inner">
+  <div class="reveal"><span class="eyebrow overline">ConstruPy</span><h2 class="heading" style="margin:25px 0">Un sistema modular.<br><em>Distintas escalas.</em></h2><p>Una oficina, una vivienda o una cubierta tienen necesidades distintas. El uso del espacio y las medidas ayudan a definir qué solución conviene evaluar.</p><p>Si ya tenés un plano o fotos del lugar, podés compartirlos al iniciar la conversación.</p><a class="impact-link" href="#contacto">Hablemos de tu proyecto ↗</a></div>
+  <div class="impact-visual reveal"><span class="brand-logo" aria-label="ConstruPy"><span>Constru<b>Py</b></span><small>SISTEMAS MODULARES</small></span><span class="impact-label">CONSTRUCCIÓN MODULAR · PARAGUAY</span></div>
+ </div>
+</section>
+<section class="contact" id="contacto">
+ <div class="container contact-grid">
+  <div class="reveal"><span class="eyebrow overline">Contacto</span><h2 class="heading">Contanos qué<br><em>querés construir.</em></h2><p>Prepará una consulta por WhatsApp con el tipo de obra, la zona y los datos que tengas a mano.</p><div class="contact-phone"><span>Línea de contacto</span><a href="https://wa.me/595981446747" target="_blank" rel="noopener noreferrer">+595 981 446 747 ↗</a></div><div class="contact-details"><a href="mailto:construpy@termoindustrial.com">construpy@termoindustrial.com</a><a href="https://www.google.com/maps/search/?api=1&amp;query=TermoIndustrial%20Capiat%C3%A1%2C%20Paraguay" target="_blank" rel="noopener noreferrer">TermoIndustrial · Capiatá, Paraguay ↗</a></div></div>
+  <div class="quote reveal"><span class="eyebrow" style="color:var(--bronze)">Conversemos de tu proyecto</span><h3 class="quote-title">Consultá por tu obra</h3>
+   <form id="quoteForm"><div class="form-grid">
+    <div class="field"><label for="fullName">Tu nombre *</label><input id="fullName" name="name" autocomplete="name" required maxlength="80" placeholder="¿Cómo te llamás?"></div>
+    <div class="field"><label for="projectType">Tipo de proyecto *</label><select id="projectType" name="type" required><option value="">Seleccioná una opción</option><option>Vivienda modular</option><option>Oficina o local comercial</option><option>Quincho o tinglado</option><option>Cámara de frío</option><option>Sala blanca</option><option>Otro proyecto</option></select></div>
+    <div class="field"><label for="location">Ciudad / zona</label><input id="location" name="location" maxlength="100" placeholder="Ej. Asunción"></div>
+    <div class="field"><label for="timeframe">¿Para cuándo lo imaginás?</label><select id="timeframe" name="timeframe"><option value="">Todavía no lo sé</option><option>Lo antes posible</option><option>En los próximos meses</option><option>Estoy planificando a futuro</option></select></div>
+    <div class="field full"><label for="projectNotes">Contanos un poco de tu idea</label><textarea id="projectNotes" name="notes" maxlength="1200" placeholder="¿Qué tipo de espacio u obra querés desarrollar?"></textarea></div>
+   </div><div class="form-end"><button type="submit" class="btn btn-dark">Preparar consulta <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><small>Revisá el mensaje antes de abrir WhatsApp.</small></div></form><div class="quote-preview" id="quotePreview" hidden><h4>Tu consulta</h4><p id="quoteMessage"></p><a class="btn btn-dark" id="quoteLink" href="https://wa.me/595981446747" target="_blank" rel="noopener noreferrer">Abrir WhatsApp ↗</a></div>
+  </div>
+ </div>
+</section>
+<section class="endcap">
+ <img src="quincho.webp" alt="" loading="lazy">
+ <div class="container"><div><span class="eyebrow" style="color:var(--gold)">ConstruPy</span><h2>¿Ya tenés las medidas?<br><em>Hablemos de tu obra.</em></h2></div><a class="btn" href="https://wa.me/595981446747?text=Hola%2C%20quiero%20consultar%20sobre%20un%20proyecto%20de%20construcci%C3%B3n." target="_blank" rel="noopener noreferrer">Hablemos ↗</a></div>
+</section>
+</main>
+<footer>
+ <div class="container">
+  <div class="footer-main">
+   <div><a class="brand" href="#inicio"><span class="brand-logo" aria-label="ConstruPy"><span>Constru<b>Py</b></span><small>SISTEMAS MODULARES</small></span></a><p>Construcción modular en seco con termopaneles para viviendas, oficinas, cubiertas y espacios técnicos.</p></div>
+   <div class="footer-col"><h4>Explorar</h4><a href="#nosotros">El sistema</a><a href="#servicios">Especialidades</a><a href="#vision">Obras</a><a href="#proceso">Método de trabajo</a></div>
+   <div class="footer-col"><h4>Hablemos</h4><a href="https://wa.me/595981446747" target="_blank" rel="noopener noreferrer">WhatsApp · +595 981 446 747</a><a href="#contacto">Iniciar un proyecto ↗</a><a href="mailto:construpy@termoindustrial.com">construpy@termoindustrial.com</a><a href="https://www.google.com/maps/search/?api=1&amp;query=TermoIndustrial%20Capiat%C3%A1%2C%20Paraguay" target="_blank" rel="noopener noreferrer">TermoIndustrial · Capiatá ↗</a></div>
+  </div>
+  <div class="footer-bottom"><span>ConstruPy · Muestra web de NovaTec Engineering.</span><span>Fotografías de obras publicadas por TermoIndustrial.</span></div>
+ </div>
+</footer>
+<a class="fixed-wa" href="https://wa.me/595981446747?text=Hola%2C%20quiero%20consultar%20sobre%20un%20proyecto." target="_blank" rel="noopener noreferrer" aria-label="Contactar a ConstruPy por WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4.7 19.5 6 15.8A8 8 0 1 1 9 19l-4.3.5Z"/><path d="M9 9c.4 2.3 2.3 4.2 4.9 4.8l1.5-1.4 2.2 1.1c-.2 1.5-1.8 2.3-3.2 2.1C10.5 15.1 7.9 12 7.8 8.9c0-1.4 1.2-2.4 2-2.6L11 8.8Z"/></svg><span>Contactar por WhatsApp</span></a>
+</div>
+<script>
+(function(){
+ var nav=document.getElementById('nav');
+ var menu=document.getElementById('navItems');
+ var toggle=document.getElementById('menuToggle');
+ var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function syncNav(){nav.classList.toggle('scrolled',window.scrollY>60)}
+ syncNav();window.addEventListener('scroll',syncNav,{passive:true});
+ function closeMenu(){menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Abrir menú');toggle.textContent='☰';document.body.classList.remove('menu-on')}
+ toggle.addEventListener('click',function(){var isOpen=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',String(isOpen));toggle.setAttribute('aria-label',isOpen?'Cerrar menú':'Abrir menú');toggle.textContent=isOpen?'✕':'☰';document.body.classList.toggle('menu-on',isOpen)});
+ menu.querySelectorAll('a').forEach(function(link){link.addEventListener('click',closeMenu)});
+ window.addEventListener('keydown',function(event){if(event.key==='Escape')closeMenu()});
+ var observer=('IntersectionObserver'in window)?new IntersectionObserver(function(items){items.forEach(function(item){if(item.isIntersecting){item.target.classList.add('visible');observer.unobserve(item.target)}})},{threshold:.08,rootMargin:'0px 0px -25px 0px'}):null;
+ document.querySelectorAll('.reveal').forEach(function(el){if(observer&&!reduced){observer.observe(el)}else{el.classList.add('visible')}});
+ var visions=[
+  {image:'full-store.webp',title:'Oficinas<br>Full Store',text:'Oficinas de uso múltiple y sala de reuniones. 32 m² con estructura metálica, paredes y cubierta de termopaneles.',alt:'Exterior de las oficinas Full Store'},
+  {image:'quincho.webp',title:'Cubierta para<br>quincho',text:'Cubierta de 85 m² para un quincho residencial. Incluye estructura metálica, techo de termopaneles y desagüe pluvial.',alt:'Cubierta metálica y termopaneles sobre un quincho'},
+  {image:'gallo.webp',title:'Oficinas<br>Gallo S.R.L.',text:'Oficinas administrativas de 29 m² con baño, estructura metálica, termopaneles en paredes y cubierta y ventanas de vidrio templado.',alt:'Exterior de las oficinas Gallo S.R.L.'}
+ ];
+ var visionRequest=0;
+ var photo=document.getElementById('visionPhoto'),img=document.getElementById('visionImage'),title=document.getElementById('visionTitle'),description=document.getElementById('visionText'),number=document.getElementById('visionNum');
+ document.querySelectorAll('[data-vision]').forEach(function(button){button.addEventListener('click',function(){var i=Number(button.getAttribute('data-vision'));if(!visions[i])return;document.querySelectorAll('[data-vision]').forEach(function(tab){tab.setAttribute('aria-selected',String(tab===button))});photo.classList.add('changing');var item=visions[i], request=++visionRequest;var pre=new Image();pre.onload=function(){if(request!==visionRequest)return;img.src=item.image;img.alt=item.alt;title.innerHTML=item.title;description.textContent=item.text;number.textContent=String(i+1).padStart(2,'0');photo.classList.remove('changing')};pre.onerror=function(){if(request!==visionRequest)return;title.innerHTML=item.title;description.textContent=item.text;number.textContent=String(i+1).padStart(2,'0');photo.classList.remove('changing')};pre.src=item.image;})});
+ var form=document.getElementById('quoteForm'), preview=document.getElementById('quotePreview');
+ form.addEventListener('input',function(){preview.hidden=true});
+ form.addEventListener('submit',function(event){
+  event.preventDefault();
+  if(!form.reportValidity())return;
+  var val=function(id){return document.getElementById(id).value.trim()};
+  var name=document.getElementById('fullName');
+  if(!val('fullName')){name.setCustomValidity('Ingresá tu nombre.');name.reportValidity();return}
+  var lines=['Hola, ConstruPy. Quisiera consultar sobre un proyecto.', 'Mi nombre: '+val('fullName'), 'Tipo de proyecto: '+val('projectType')];
+  if(val('location'))lines.push('Ubicación: '+val('location'));
+  if(val('timeframe'))lines.push('Plazo estimado: '+val('timeframe'));
+  if(val('projectNotes'))lines.push('Detalles: '+val('projectNotes'));
+  var message=lines.join('\n');
+  var link=document.getElementById('quoteLink');
+  document.getElementById('quoteMessage').textContent=message;
+  link.href='https://wa.me/595981446747?text='+encodeURIComponent(message);
+  preview.hidden=false;
+  link.focus({preventScroll:true});
+  preview.scrollIntoView({block:'nearest'});
+ });
+ document.getElementById('fullName').addEventListener('input',function(event){event.target.setCustomValidity('')});
+})();
+</script>
+</body>
+</html>
